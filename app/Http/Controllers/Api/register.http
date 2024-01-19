@@ -1,0 +1,7 @@
+POST http://localhost:8000/api/register
+Accept: application/json
+Content-Type: application/json
+
+{
+    "endpoint": "http://google.com"
+}
