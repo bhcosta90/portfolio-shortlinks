@@ -4,5 +4,5 @@ namespace Core\Shared\Interfaces;
 
 interface PublishInterface
 {
-    public function message($destin, $data): void;
+    public function message($destin, array $data): void;
 }

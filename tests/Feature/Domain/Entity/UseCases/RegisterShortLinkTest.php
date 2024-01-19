@@ -20,6 +20,7 @@ describe("RegisterShortLink Feature Test", function () {
         );
 
         $response = $useCase->execute(new RegisterShortLinkInput(url: "http://google.com"));
+        
         assertDatabaseHas('short_links', [
             'id' => $response->id,
         ]);
