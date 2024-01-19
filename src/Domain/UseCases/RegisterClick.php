@@ -10,7 +10,7 @@ use Core\Domain\UseCases\DTO\RegisterClickInput;
 use Core\Domain\UseCases\DTO\RegisterClickOutput;
 use Core\Shared\Interfaces\PublishInterface;
 
-class RegisterClick
+readonly class RegisterClick
 {
     public function __construct(
         protected ShotLinkRepositoryInterface $shotLinkRepository,

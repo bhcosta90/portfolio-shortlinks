@@ -34,9 +34,9 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         ]);
     }
 
-    public function findShortLinkByUrl(string $url): ?ShortLink
+    public function findShortLinkByHash(string $hash): ?ShortLink
     {
-        $model = $this->shortLink->where('url', $url)->first();
+        $model = $this->shortLink->where('hash', $hash)->first();
 
         if ($model) {
             return new ShortLink(url: $model->url, hash: $model->hash);

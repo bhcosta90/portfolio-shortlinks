@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('short_links', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('url');
-            $table->string('hash');
+            $table->string('hash', 50);
             $table->unsignedInteger('total');
             $table->timestamps();
         });
