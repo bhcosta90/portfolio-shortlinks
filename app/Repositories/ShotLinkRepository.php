@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
-use Core\Domain\Entity\Click;
 use Core\Domain\Entity\ShortLink;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
+use DateTime;
 
 class ShotLinkRepository implements ShotLinkRepositoryInterface
 {
@@ -23,15 +23,25 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         ]);
     }
 
-    public function registerClick(ShortLink $shortLink, Click $click): bool
+    public function registerClick(ShortLink $shortLink, DateTime $dateTime): bool
     {
         $model = $this->shortLink->find($shortLink->getId());
 
-        return (bool) $model->clicks->attach([
-            'id' => $click->getId(),
-            'short_link_id' => $shortLink->getId(),
-            'ip_address' => $click->getIp(),
+        $updated = $model->update([
+            'total' => 1
+        ], [
+            'updated_at' => $dateTime
         ]);
+
+        foreach ($shortLink->getClicks() as $click){
+            $model->clicks()->create([
+                'id' => $click->getId(),
+                'short_link_id' => $shortLink->getId(),
+                'ip_address' => $click->getIp(),
+            ]);
+        }
+
+        return $updated;
     }
 
     public function findShortLinkByHash(string $hash): ?ShortLink
@@ -39,11 +49,23 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         $model = $this->shortLink->where('hash', $hash)->first();
 
         if ($model) {
-            return new ShortLink(url: $model->url, hash: $model->hash);
+            return new ShortLink(url: $model->url, hash: $model->hash, updatedAt: $model->updated_at);
         }
 
         return null;
     }
+
+    public function findShortLinkById(string $id): ShortLink
+    {
+        $model = $this->shortLink->findOrFail($id);
+        return new ShortLink(
+            url: $model->url,
+            hash: $model->hash,
+            id: $model->id,
+            updatedAt: $model->updated_at
+        );
+    }
+
 
     public function totalClick(string $idShortLink): int
     {

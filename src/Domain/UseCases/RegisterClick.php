@@ -2,44 +2,30 @@
 
 namespace Core\Domain\UseCases;
 
-use Core\Domain\Cache\ShortLinkCacheInterface;
-use Core\Domain\Entity\ShortLink;
-use Core\Domain\Exception\ShortLinkNotFoundException;
+use Core\Domain\Entity\Click;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Domain\UseCases\DTO\RegisterClickInput;
 use Core\Domain\UseCases\DTO\RegisterClickOutput;
-use Core\Shared\Interfaces\PublishInterface;
 
 readonly class RegisterClick
 {
     public function __construct(
         protected ShotLinkRepositoryInterface $shotLinkRepository,
-        protected ShortLinkCacheInterface $cache,
-        protected PublishInterface $publish,
     ) {
         //
     }
 
-    /**
-     * @throws ShortLinkNotFoundException
-     */
     public function execute(RegisterClickInput $input): RegisterClickOutput
     {
-        $endpoint = $this->cache->get($input->hash);
+        $shortLink = $this->shotLinkRepository->findShortLinkById($input->id);
+        $click = new Click(ip: $input->ip);
+        $shortLink->addClick($click);
 
-        if (empty($endpoint)) {
-            $entity = $this->shotLinkRepository->findShortLinkByHash($input->hash);
-            if (empty($entity)) {
-                throw new ShortLinkNotFoundException($input->hash);
-            }
-            $this->cache->set($entity->getHash(), $endpoint = $entity->getUrl(), ShortLink::$EXPIRED_IN);
-        }
-
-        $this->publish->message("short_link", [
-            'endpoint' => $endpoint,
-            "id" => $input->ip,
-        ]);
-
-        return new RegisterClickOutput(url: $endpoint);
+        return new RegisterClickOutput(
+            success: $this->shotLinkRepository->registerClick(
+                $shortLink,
+                $shortLink->getUpdatedAt()
+            )
+        );
     }
 }

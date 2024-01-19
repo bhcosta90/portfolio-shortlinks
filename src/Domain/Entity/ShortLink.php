@@ -4,10 +4,12 @@ namespace Core\Domain\Entity;
 
 use Core\Shared\Domain\Code;
 use Core\Shared\Domain\Uuid;
+use DateTime;
 
 class ShortLink
 {
     public static int $EXPIRED_IN = 86400; // cache of 1 day
+
     public function __construct(
         protected string $url,
         protected ?string $hash = null,
@@ -16,6 +18,7 @@ class ShortLink
          */
         protected array $clicks = [],
         protected ?string $id = null,
+        protected ?DateTime $updatedAt = null,
     ) {
         $this->id = (string)Uuid::make($this->id);
 
@@ -47,5 +50,18 @@ class ShortLink
     public function getId(): ?string
     {
         return $this->id;
+    }
+
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    public function getDataCache(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'endpoint' => $this->getUrl()
+        ];
     }
 }

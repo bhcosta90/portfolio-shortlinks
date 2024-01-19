@@ -26,7 +26,7 @@ readonly class RegisterShortLink
 
         $this->database->execute(function () use ($entity) {
             $this->shotLinkRepository->register($entity);
-            $this->cache->set("short_link_" . $entity->getHash(), $entity->getUrl(), ShortLink::$EXPIRED_IN);
+            $this->cache->set("short_link_" . $entity->getHash(), $entity->getDataCache(), ShortLink::$EXPIRED_IN);
         });
 
         return new RegisterShortLinkOutput(
