@@ -8,7 +8,7 @@ use Core\Domain\Repository\ShotLinkRepositoryInterface;
 
 class ShotLinkRepository implements ShotLinkRepositoryInterface
 {
-    public function __construct(protected ShortLink $shortLink, protected Click $click)
+    public function __construct(protected \App\Models\ShortLink $shortLink, protected \App\Models\Click $click)
     {
         //
     }

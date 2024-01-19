@@ -7,8 +7,8 @@ use Core\Shared\Domain\Uuid;
 class Click
 {
     public function __construct(
-        protected string $id,
         protected string $ip,
+        protected ?string $id = null,
     ) {
         $this->id = (string)Uuid::make($this->id);
     }

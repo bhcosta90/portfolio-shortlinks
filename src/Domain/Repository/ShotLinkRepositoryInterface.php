@@ -11,7 +11,7 @@ interface ShotLinkRepositoryInterface
 
     public function registerClick(ShortLink $shortLink, Click $click): bool;
 
-    public function findShortLinkByUrl(string $url): ?ShortLink;
+    public function findShortLinkByHash(string $hash): ?ShortLink;
 
     public function totalClick(string $idShortLink): int;
 }

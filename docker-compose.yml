@@ -63,6 +63,17 @@ services:
             - memcached:/data:delegated
         networks:
             - kool_local
+    rabbitmq:
+        image: "rabbitmq:3-management"
+        ports:
+            - "5672:5672"  # Porta padrão para conexões AMQP
+            - "15672:15672" # Porta para o painel de controle da RabbitMQ (opcional, acesso via http://localhost:15672)
+        environment:
+#            RABBITMQ_ERLANG_COOKIE: "cookie-secreto-aqui" # Substitua por um valor seguro para o Erlang cookie
+            RABBITMQ_DEFAULT_USER: "admin"
+            RABBITMQ_DEFAULT_PASS: "admin"
+        volumes:
+            - rabbitmq:/var/lib/rabbitmq
 #
 # Networks definitions
 #
@@ -75,3 +86,4 @@ volumes:
     database:
     cache:
     memcached:
+    rabbitmq:

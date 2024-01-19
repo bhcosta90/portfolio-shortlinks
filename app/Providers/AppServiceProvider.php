@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Shared\Cache;
+use App\Shared\ShortLinkCache;
 use App\Shared\Database;
-use Core\Shared\Interfaces\CacheInterface;
+use Core\Domain\Cache\ShortLinkCacheInterface;
 use Core\Shared\Interfaces\DatabaseInterface;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(DatabaseInterface::class, Database::class);
-        $this->app->singleton(CacheInterface::class, Cache::class);
+        $this->app->singleton(ShortLinkCacheInterface::class, ShortLinkCache::class);
     }
 
     /**

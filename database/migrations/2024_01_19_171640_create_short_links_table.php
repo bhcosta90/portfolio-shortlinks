@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->ulid('id')->primary();
             $table->string('url');
             $table->string('hash');
+            $table->unsignedInteger('total');
             $table->timestamps();
         });
     }

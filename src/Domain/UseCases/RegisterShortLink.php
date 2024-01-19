@@ -2,6 +2,7 @@
 
 namespace Core\Domain\UseCases;
 
+use Core\Domain\Cache\ShortLinkCacheInterface;
 use Core\Domain\Entity\ShortLink;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Domain\UseCases\DTO\RegisterShortLinkInput;
@@ -14,8 +15,9 @@ readonly class RegisterShortLink
     public function __construct(
         protected ShotLinkRepositoryInterface $shotLinkRepository,
         protected DatabaseInterface $database,
-        protected CacheInterface $cache
+        protected ShortLinkCacheInterface $cache
     ) {
+        //
     }
 
     public function execute(RegisterShortLinkInput $input): RegisterShortLinkOutput
