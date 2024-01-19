@@ -1,0 +1,77 @@
+version: "3.8"
+#
+# Services definitions
+#
+services:
+    dev:
+        image: kooldev/php:8.2-swoole
+        command: php artisan serve --host=0.0.0.0 --port=80
+        ports:
+            - "${KOOL_APP_PORT_DEV:-8000}:80"
+        environment:
+            ASUSER: "${KOOL_ASUSER:-0}"
+            UID: "${UID:-0}"
+        volumes:
+            - .:/app:delegated
+        networks:
+            - kool_local
+            - kool_global
+
+    app:
+        image: kooldev/php:8.2-swoole
+        command: php artisan octane:start --server=swoole --host=0.0.0.0 --port=80 --watch --poll
+        ports:
+            - "${KOOL_APP_PORT:-8001}:80"
+        environment:
+            ASUSER: "${KOOL_ASUSER:-0}"
+            UID: "${UID:-0}"
+        volumes:
+            - .:/app:delegated
+        networks:
+            - kool_local
+            - kool_global
+    database:
+        image: mysql/mysql-server:8.0
+        command: --default-authentication-plugin=mysql_native_password
+        ports:
+            - "${KOOL_DATABASE_PORT:-3306}:3306"
+        environment:
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_ROOT_PASSWORD: "${DB_PASSWORD-rootpass}"
+            MYSQL_DATABASE: "${DB_DATABASE-database}"
+            MYSQL_USER: "${DB_USERNAME-user}"
+            MYSQL_PASSWORD: "${DB_PASSWORD-pass}"
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        volumes:
+            - database:/var/lib/mysql:delegated
+        networks:
+            - kool_local
+        healthcheck:
+            test: [ "CMD", "mysqladmin", "ping" ]
+    cache:
+        image: redis:7-alpine
+        volumes:
+            - cache:/data:delegated
+        networks:
+            - kool_local
+        healthcheck:
+            test: [ "CMD", "redis-cli", "ping" ]
+
+    memcached:
+        image: memcached:1.6-alpine
+        volumes:
+            - memcached:/data:delegated
+        networks:
+            - kool_local
+#
+# Networks definitions
+#
+networks:
+    kool_local:
+    kool_global:
+        external: true
+        name: "${KOOL_GLOBAL_NETWORK:-kool_global}"
+volumes:
+    database:
+    cache:
+    memcached:
