@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\RegisterController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\ShortLinkController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('register', [RegisterController::class, 'store']);
+Route::get('/{hash}', [ShortLinkController::class, 'show']);
+Route::post('register', [ShortLinkController::class, 'store']);
