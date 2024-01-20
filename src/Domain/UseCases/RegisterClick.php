@@ -18,7 +18,7 @@ readonly class RegisterClick
     public function execute(RegisterClickInput $input): RegisterClickOutput
     {
         $shortLink = $this->shotLinkRepository->findShortLinkById($input->id);
-        $click = new Click(ip: $input->ip);
+        $click = new Click(ip: $input->ip, createdAt: $input->createdAt);
         $shortLink->addClick($click);
 
         return new RegisterClickOutput(

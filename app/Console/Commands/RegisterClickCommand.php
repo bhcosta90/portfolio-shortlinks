@@ -6,6 +6,7 @@ use Bschmitt\Amqp\Facades\Amqp;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Domain\UseCases\DTO\RegisterClickInput;
 use Core\Domain\UseCases\RegisterClick;
+use DateTime;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -45,7 +46,8 @@ class RegisterClickCommand extends Command
                 $response = $useCase->execute(
                     new RegisterClickInput(
                         id: $data['id'],
-                        ip: $data['ip']
+                        ip: $data['ip'],
+                        createdAt: new DateTime($data['date'])
                     )
                 );
 
@@ -58,8 +60,6 @@ class RegisterClickCommand extends Command
         }, [
             'routing' => 'short_link',
             'exchange' => 'amq.topic',
-            'queue_force_declare' => true,
-            'queue_exclusive' => true,
             'persistent' => true // required if you want to listen forever
         ]);
     }

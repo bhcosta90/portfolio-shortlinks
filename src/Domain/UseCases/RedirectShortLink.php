@@ -9,6 +9,7 @@ use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Domain\UseCases\DTO\RedirectShortLinkInput;
 use Core\Domain\UseCases\DTO\RedirectShortLinkOutput;
 use Core\Shared\Interfaces\PublishInterface;
+use DateTime;
 
 readonly class RedirectShortLink
 {
@@ -36,7 +37,8 @@ readonly class RedirectShortLink
         }
 
         $this->publish->message("short_link", [
-            "ip" => $input->ip
+                "ip" => $input->ip,
+                'date' => (new DateTime())->format('Y-m-d H:i:s'),
         ] + $cache);
 
         return new RedirectShortLinkOutput(url: $cache['endpoint']);

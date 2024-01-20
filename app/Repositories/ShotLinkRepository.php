@@ -41,6 +41,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
                     'id' => $click->getId(),
                     'short_link_id' => $shortLink->getId(),
                     'ip_address' => $click->getIp(),
+                    'created_at' => $click->getCreatedAt(),
                 ]);
             }
         }
@@ -86,6 +87,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
 
     public function paginateHistoriesByShortLink(ShortLink $shortLink): PaginationInterface
     {
-        return new PaginationPresenter($this->shortLink->clicks()->paginate());
+        $model = $this->shortLink->findOrFail($shortLink->getId());
+        return new PaginationPresenter($model->clicks()->orderBy('created_at', 'desc')->paginate());
     }
 }

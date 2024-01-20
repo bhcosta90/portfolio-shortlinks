@@ -19,6 +19,7 @@ readonly class ShowShortLink
         $shortLink = $this->shotLinkRepository->findShortLinkByHash($input->hash);
 
         return new ShowShortLinkOutput(
+            id: $shortLink->getId(),
             endpoint: $shortLink->getUrl(),
             total: $shortLink->getTotal(),
         );
