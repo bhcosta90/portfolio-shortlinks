@@ -2,7 +2,7 @@
 
 namespace App\Shared;
 
-use Core\Domain\Cache\ShortLinkCacheInterface;
+use Core\Infra\Cache\ShortLinkCacheInterface;
 use Illuminate\Support\Facades\Cache;
 
 class ShortLinkCache implements ShortLinkCacheInterface

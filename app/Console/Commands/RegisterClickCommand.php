@@ -4,8 +4,8 @@ namespace App\Console\Commands;
 
 use Bschmitt\Amqp\Facades\Amqp;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
-use Core\Domain\UseCases\DTO\RegisterClick\RegisterClickInput;
-use Core\Domain\UseCases\RegisterClick;
+use Core\Infra\UseCases\DTO\RegisterClick\RegisterClickInput;
+use Core\Infra\UseCases\RegisterClick;
 use DateTime;
 use Exception;
 use Illuminate\Console\Command;

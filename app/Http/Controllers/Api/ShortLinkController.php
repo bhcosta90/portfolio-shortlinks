@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\RegisterRequestStore;
 use App\Http\Resources\ShortLinkResource;
-use Core\Domain\UseCases\DTO\RedirectShortLink\RedirectShortLinkInput;
-use Core\Domain\UseCases\DTO\RegisterShortLink\RegisterShortLinkInput;
-use Core\Domain\UseCases\RedirectShortLink;
-use Core\Domain\UseCases\RegisterShortLink;
+use Core\Infra\UseCases\DTO\RedirectShortLink\RedirectShortLinkInput;
+use Core\Infra\UseCases\DTO\RegisterShortLink\RegisterShortLinkInput;
+use Core\Infra\UseCases\RedirectShortLink;
+use Core\Infra\UseCases\RegisterShortLink;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 

@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Presenters\PaginationPresenter;
 use App\Http\Requests\Api\RegisterRequestStore;
-use Core\Domain\UseCases\DTO\HistoryShortLink\HistoryShortLinkInput;
-use Core\Domain\UseCases\DTO\RegisterShortLink\RegisterShortLinkInput;
-use Core\Domain\UseCases\DTO\ShowShortLink\ShowShortLinkInput;
-use Core\Domain\UseCases\HistoryShortLink;
-use Core\Domain\UseCases\RegisterShortLink;
-use Core\Domain\UseCases\ShowShortLink;
+use Core\Infra\UseCases\DTO\HistoryShortLink\HistoryShortLinkInput;
+use Core\Infra\UseCases\DTO\RegisterShortLink\RegisterShortLinkInput;
+use Core\Infra\UseCases\DTO\ShowShortLink\ShowShortLinkInput;
+use Core\Infra\UseCases\HistoryShortLink;
+use Core\Infra\UseCases\RegisterShortLink;
+use Core\Infra\UseCases\ShowShortLink;
 
 use function redirect;
 use function route;

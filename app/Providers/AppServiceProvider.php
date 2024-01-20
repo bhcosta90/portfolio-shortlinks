@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Shared\Database;
 use App\Shared\RabbitMQ;
 use App\Shared\ShortLinkCache;
-use Core\Domain\Cache\ShortLinkCacheInterface;
+use Core\Infra\Cache\ShortLinkCacheInterface;
 use Core\Shared\Interfaces\DatabaseInterface;
 use Core\Shared\Interfaces\PublishInterface;
 use Illuminate\Pagination\Paginator;
