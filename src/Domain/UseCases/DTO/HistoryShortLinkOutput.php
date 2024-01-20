@@ -2,7 +2,9 @@
 
 namespace Core\Domain\UseCases\DTO;
 
-readonly class HistoryShortLinkOutput
+use Core\Shared\Interfaces\PaginationOutputInterface;
+
+readonly class HistoryShortLinkOutput implements PaginationOutputInterface
 {
     public function __construct(
         public array $items,
