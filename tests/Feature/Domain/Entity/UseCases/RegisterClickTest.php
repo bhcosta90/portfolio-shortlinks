@@ -5,6 +5,7 @@ use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Domain\UseCases\RegisterClick;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+use function Pest\Laravel\assertDatabaseCount;
 use function PHPUnit\Framework\assertTrue;
 
 uses(RefreshDatabase::class);
@@ -19,5 +20,6 @@ describe("RegisterClick Unit Test", function () {
 
         $response = $useCase->execute(new \Core\Domain\UseCases\DTO\RegisterClickInput(id: $shortLink->id, ip: '0.0.0.0'));
         assertTrue($response->success);
+        assertDatabaseCount('clicks', 1);
     });
 });

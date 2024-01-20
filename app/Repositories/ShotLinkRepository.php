@@ -5,6 +5,7 @@ namespace App\Repositories;
 use Core\Domain\Entity\ShortLink;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 
 class ShotLinkRepository implements ShotLinkRepositoryInterface
 {
