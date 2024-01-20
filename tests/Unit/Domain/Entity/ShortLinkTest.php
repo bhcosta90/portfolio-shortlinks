@@ -4,8 +4,8 @@ use Core\Domain\Entity\ClickDomain;
 use Core\Domain\Entity\ShortLinkDomain;
 
 use function PHPUnit\Framework\assertCount;
-use function PHPUnit\Framework\assertNotEmpty;
 use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertNotEmpty;
 
 describe("ShortLinkTest Unit Test", function () {
     test("Create simple short link", function () {
@@ -16,7 +16,7 @@ describe("ShortLinkTest Unit Test", function () {
         assertEquals(8, strlen($entity->getHash()));
     });
 
-    test("Add click in short link", function(){
+    test("Add click in short link", function () {
         $click = new ClickDomain(ip: '0.0.0.0', createdAt: new DateTime());
         $entity = new ShortLinkDomain(url: 'testing');
         expect($entity->getClicks())->toHaveCount(0);

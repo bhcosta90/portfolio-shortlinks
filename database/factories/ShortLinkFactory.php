@@ -19,7 +19,7 @@ class ShortLinkFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => (string) Ulid::generate(),
+            'id' => (string)Ulid::generate(),
             'url' => $this->faker->url(),
             'hash' => Str::random(50),
             'total' => 0,

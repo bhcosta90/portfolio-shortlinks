@@ -21,6 +21,22 @@ class PaginationPresenter implements PaginationInterface
         );
     }
 
+    private function resolveItems(array $items): array
+    {
+        $response = [];
+
+        foreach ($items as $item) {
+            $stdClass = new stdClass;
+            foreach ($item->toArray() as $key => $value) {
+                $stdClass->{$key} = $value;
+            }
+
+            $response[] = $stdClass;
+        }
+
+        return $response;
+    }
+
     /**
      * @return stdClass[]
      */
@@ -62,21 +78,5 @@ class PaginationPresenter implements PaginationInterface
     public function from(): int
     {
         return $this->paginator->lastItem() ?? 0;
-    }
-
-    private function resolveItems(array $items): array
-    {
-        $response = [];
-
-        foreach ($items as $item) {
-            $stdClass = new stdClass;
-            foreach ($item->toArray() as $key => $value) {
-                $stdClass->{$key} = $value;
-            }
-
-            $response[] = $stdClass;
-        }
-
-        return $response;
     }
 }

@@ -10,8 +10,10 @@ use DateTime;
 
 class ShotLinkRepository implements ShotLinkRepositoryInterface
 {
-    public function __construct(protected \App\Models\ShortLink $shortLink, protected \App\Models\ShortLinkHistory $click)
-    {
+    public function __construct(
+        protected \App\Models\ShortLink $shortLink,
+        protected \App\Models\ShortLinkHistory $click
+    ) {
         //
     }
 
@@ -30,7 +32,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         $model = $this->shortLink->find($shortLink->getId());
 
         $updated = $model->update([
-            'total' => (int) $model->total + 1
+            'total' => (int)$model->total + 1
         ], [
             'updated_at' => $dateTime
         ]);
@@ -81,6 +83,8 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
     public function paginateHistoriesByShortLink(int $page, ShortLinkDomain $shortLink): PaginationInterface
     {
         $model = $this->shortLink->findOrFail($shortLink->getId());
-        return new PaginationPresenter($model->shortLinkHistories()->orderBy('created_at', 'desc')->paginate(page: $page));
+        return new PaginationPresenter(
+            $model->shortLinkHistories()->orderBy('created_at', 'desc')->paginate(page: $page)
+        );
     }
 }

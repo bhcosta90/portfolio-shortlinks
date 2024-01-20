@@ -2,7 +2,6 @@
 
 namespace Core\Domain\Repository;
 
-use Core\Domain\Entity\ClickDomain;
 use Core\Domain\Entity\ShortLinkDomain;
 use Core\Shared\Interfaces\PaginationInterface;
 use DateTime;

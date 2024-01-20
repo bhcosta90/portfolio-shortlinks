@@ -8,7 +8,7 @@
             <div class="card-body">
                 <input type="url" name="endpoint" class="form-control form-control-lg" placeholder="http://google.com"/>
                 @error('endpoint')
-                    <div class="text-danger">{{$message}}</div>
+                <div class="text-danger">{{$message}}</div>
                 @enderror
             </div>
             <div class="card-footer">

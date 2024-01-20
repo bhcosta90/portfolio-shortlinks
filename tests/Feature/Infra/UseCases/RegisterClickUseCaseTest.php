@@ -20,11 +20,13 @@ describe("RegisterClickUseCase Unit Test", function () {
             shotLinkRepository: app(ShotLinkRepositoryInterface::class),
         );
 
-        $response = $useCase->execute(new RegisterClickInput(
-            id: $shortLink->id,
-            ip: '0.0.0.0',
-            createdAt: new DateTime(),
-        ));
+        $response = $useCase->execute(
+            new RegisterClickInput(
+                id: $shortLink->id,
+                ip: '0.0.0.0',
+                createdAt: new DateTime(),
+            )
+        );
         assertTrue($response->success);
         assertDatabaseCount(ShortLinkHistory::class, 1);
     });

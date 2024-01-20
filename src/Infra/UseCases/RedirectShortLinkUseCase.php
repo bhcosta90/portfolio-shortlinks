@@ -36,10 +36,13 @@ readonly class RedirectShortLinkUseCase
             $this->cache->set($entity->getHash(), $cache = $entity->getDataCache(), ShortLinkDomain::$EXPIRED_IN);
         }
 
-        $this->publish->message("short_link", [
+        $this->publish->message(
+            "short_link",
+            [
                 "ip" => $input->ip,
                 'date' => (new DateTime())->format('Y-m-d H:i:s'),
-        ] + $cache);
+            ] + $cache
+        );
 
         return new RedirectShortLinkOutput(url: $cache['endpoint']);
     }

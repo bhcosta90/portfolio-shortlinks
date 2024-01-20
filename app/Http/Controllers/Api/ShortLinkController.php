@@ -16,8 +16,10 @@ use function redirect;
 
 class ShortLinkController extends Controller
 {
-    public function store(RegisterRequestStore $registerRequestStore, RegisterShortLinkUseCase $registerShortLink): ShortLinkResource
-    {
+    public function store(
+        RegisterRequestStore $registerRequestStore,
+        RegisterShortLinkUseCase $registerShortLink
+    ): ShortLinkResource {
         $response = $registerShortLink->execute(new RegisterShortLinkInput(url: $registerRequestStore->endpoint));
         return new ShortLinkResource($response);
     }
@@ -26,8 +28,7 @@ class ShortLinkController extends Controller
         string $hash,
         RedirectShortLinkUseCase $registerClick,
         Request $request
-    ): RedirectResponse|array
-    {
+    ): RedirectResponse|array {
         $response = $registerClick->execute(new RedirectShortLinkInput(hash: $hash, ip: $request->ip()));
         if (!isset($request->debug)) {
             return redirect($response->url);

@@ -38,11 +38,6 @@ class ShortLinkDomain
         $this->clicks[] = $click;
     }
 
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
     public function getHash(): ?string
     {
         return $this->hash;
@@ -51,11 +46,6 @@ class ShortLinkDomain
     public function getClicks(): array
     {
         return $this->clicks;
-    }
-
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     public function getUpdatedAt(): ?DateTime
@@ -69,5 +59,15 @@ class ShortLinkDomain
             'id' => $this->getId(),
             'endpoint' => $this->getUrl()
         ];
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
     }
 }
