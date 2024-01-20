@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\ShortLink;
+use App\Models\ShortLinkHistory;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Infra\UseCases\DTO\RegisterClick\RegisterClickInput;
 use Core\Infra\UseCases\RegisterClickUseCase;
@@ -25,6 +26,6 @@ describe("RegisterClickUseCase Unit Test", function () {
             createdAt: new DateTime(),
         ));
         assertTrue($response->success);
-        assertDatabaseCount('clicks', 1);
+        assertDatabaseCount(ShortLinkHistory::class, 1);
     });
 });

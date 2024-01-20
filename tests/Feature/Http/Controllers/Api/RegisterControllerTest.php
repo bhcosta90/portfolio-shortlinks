@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ShortLink;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function Pest\Laravel\assertDatabaseHas;
@@ -13,7 +14,7 @@ describe("RegisterController Feature Test", function(){
             'endpoint' => 'http://google.com.br',
         ]);
 
-        assertDatabaseHas('short_links', [
+        assertDatabaseHas(ShortLink::class, [
             'id' => $response->json('data.id'),
         ]);
     });

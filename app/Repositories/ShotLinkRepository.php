@@ -37,7 +37,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
 
         if ($updated) {
             foreach ($shortLink->getClicks() as $click) {
-                $model->short_link_histories()->create([
+                $model->shortLinkHistories()->create([
                     'id' => $click->getId(),
                     'short_link_id' => $shortLink->getId(),
                     'ip_address' => $click->getIp(),
@@ -78,16 +78,9 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         );
     }
 
-
-    public function totalClick(string $idShortLink): int
-    {
-        $model = $this->shortLink->find($idShortLink);
-        return $model->short_link_histories->count();
-    }
-
     public function paginateHistoriesByShortLink(int $page, ShortLinkDomain $shortLink): PaginationInterface
     {
         $model = $this->shortLink->findOrFail($shortLink->getId());
-        return new PaginationPresenter($model->short_link_histories()->orderBy('created_at', 'desc')->paginate(page: $page));
+        return new PaginationPresenter($model->shortLinkHistories()->orderBy('created_at', 'desc')->paginate(page: $page));
     }
 }

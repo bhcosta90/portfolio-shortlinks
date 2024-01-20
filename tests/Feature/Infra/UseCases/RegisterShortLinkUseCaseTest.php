@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ShortLink;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Infra\Cache\ShortLinkCacheInterface;
 use Core\Infra\UseCases\DTO\RegisterShortLink\RegisterShortLinkInput;
@@ -21,7 +22,7 @@ describe("RegisterShortLinkUseCase Feature Test", function () {
 
         $response = $useCase->execute(new RegisterShortLinkInput(url: "http://google.com"));
 
-        assertDatabaseHas('short_links', [
+        assertDatabaseHas(ShortLink::class, [
             'id' => $response->id,
         ]);
     });

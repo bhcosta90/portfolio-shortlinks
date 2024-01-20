@@ -13,7 +13,7 @@ uses(RefreshDatabase::class);
 
 describe("HistoryShortLinkUseCase Feature Test", function () {
     test("Action execute", function () {
-        $shortLink = ShortLink::factory()->hasClicks(50)->create();
+        $shortLink = ShortLink::factory()->hasShortLinkHistories(50)->create();
         $useCase = new HistoryShortLinkUseCase(
             shortLinkRepository: app(ShotLinkRepositoryInterface::class)
         );

@@ -13,7 +13,7 @@ class ShortLink extends Model
 
     protected $guarded = [];
 
-    public function short_link_histories(): HasMany
+    public function shortLinkHistories(): HasMany
     {
         return $this->hasMany(ShortLinkHistory::class);
     }
