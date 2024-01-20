@@ -5,9 +5,8 @@ namespace Core\Domain\UseCases;
 use Core\Domain\Cache\ShortLinkCacheInterface;
 use Core\Domain\Entity\ShortLink;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
-use Core\Domain\UseCases\DTO\RegisterShortLinkInput;
-use Core\Domain\UseCases\DTO\RegisterShortLinkOutput;
-use Core\Shared\Interfaces\CacheInterface;
+use Core\Domain\UseCases\DTO\RegisterShortLink\RegisterShortLinkInput;
+use Core\Domain\UseCases\DTO\RegisterShortLink\RegisterShortLinkOutput;
 use Core\Shared\Interfaces\DatabaseInterface;
 
 readonly class RegisterShortLink

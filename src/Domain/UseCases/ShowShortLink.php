@@ -3,8 +3,8 @@
 namespace Core\Domain\UseCases;
 
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
-use Core\Domain\UseCases\DTO\ShowShortLinkInput;
-use Core\Domain\UseCases\DTO\ShowShortLinkOutput;
+use Core\Domain\UseCases\DTO\ShowShortLink\ShowShortLinkInput;
+use Core\Domain\UseCases\DTO\ShowShortLink\ShowShortLinkOutput;
 
 readonly class ShowShortLink
 {

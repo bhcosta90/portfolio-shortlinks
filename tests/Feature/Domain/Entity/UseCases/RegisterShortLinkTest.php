@@ -2,7 +2,7 @@
 
 use Core\Domain\Cache\ShortLinkCacheInterface;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
-use Core\Domain\UseCases\DTO\RegisterShortLinkInput;
+use Core\Domain\UseCases\DTO\RegisterShortLink\RegisterShortLinkInput;
 use Core\Domain\UseCases\RegisterShortLink;
 use Core\Shared\Interfaces\DatabaseInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -20,7 +20,7 @@ describe("RegisterShortLink Feature Test", function () {
         );
 
         $response = $useCase->execute(new RegisterShortLinkInput(url: "http://google.com"));
-        
+
         assertDatabaseHas('short_links', [
             'id' => $response->id,
         ]);

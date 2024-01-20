@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Domain\UseCases\DTO;
+namespace Core\Domain\UseCases\DTO\RegisterClick;
 
 readonly class RegisterClickOutput
 {

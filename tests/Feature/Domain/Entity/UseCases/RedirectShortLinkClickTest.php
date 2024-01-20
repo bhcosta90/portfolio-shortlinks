@@ -3,7 +3,7 @@
 use App\Models\ShortLink;
 use Core\Domain\Cache\ShortLinkCacheInterface;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
-use Core\Domain\UseCases\DTO\RedirectShortLinkInput;
+use Core\Domain\UseCases\DTO\RedirectShortLink\RedirectShortLinkInput;
 use Core\Domain\UseCases\RedirectShortLink;
 use Core\Shared\Interfaces\PublishInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;

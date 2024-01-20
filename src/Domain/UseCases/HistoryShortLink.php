@@ -3,8 +3,8 @@
 namespace Core\Domain\UseCases;
 
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
-use Core\Domain\UseCases\DTO\HistoryShortLinkInput;
-use Core\Domain\UseCases\DTO\HistoryShortLinkOutput;
+use Core\Domain\UseCases\DTO\HistoryShortLink\HistoryShortLinkInput;
+use Core\Domain\UseCases\DTO\HistoryShortLink\HistoryShortLinkOutput;
 
 readonly class HistoryShortLink
 {

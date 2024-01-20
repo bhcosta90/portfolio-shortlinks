@@ -6,8 +6,8 @@ use Core\Domain\Cache\ShortLinkCacheInterface;
 use Core\Domain\Entity\ShortLink;
 use Core\Domain\Exception\ShortLinkNotFoundException;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
-use Core\Domain\UseCases\DTO\RedirectShortLinkInput;
-use Core\Domain\UseCases\DTO\RedirectShortLinkOutput;
+use Core\Domain\UseCases\DTO\RedirectShortLink\RedirectShortLinkInput;
+use Core\Domain\UseCases\DTO\RedirectShortLink\RedirectShortLinkOutput;
 use Core\Shared\Interfaces\PublishInterface;
 use DateTime;
 

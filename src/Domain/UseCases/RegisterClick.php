@@ -4,8 +4,8 @@ namespace Core\Domain\UseCases;
 
 use Core\Domain\Entity\Click;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
-use Core\Domain\UseCases\DTO\RegisterClickInput;
-use Core\Domain\UseCases\DTO\RegisterClickOutput;
+use Core\Domain\UseCases\DTO\RegisterClick\RegisterClickInput;
+use Core\Domain\UseCases\DTO\RegisterClick\RegisterClickOutput;
 
 readonly class RegisterClick
 {

@@ -2,7 +2,7 @@
 
 use App\Models\ShortLink;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
-use Core\Domain\UseCases\DTO\RegisterClickInput;
+use Core\Domain\UseCases\DTO\RegisterClick\RegisterClickInput;
 use Core\Domain\UseCases\RegisterClick;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
