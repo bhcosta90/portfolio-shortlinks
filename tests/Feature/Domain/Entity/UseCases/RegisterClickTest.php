@@ -2,6 +2,7 @@
 
 use App\Models\ShortLink;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
+use Core\Domain\UseCases\DTO\RegisterClickInput;
 use Core\Domain\UseCases\RegisterClick;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -18,7 +19,11 @@ describe("RegisterClick Unit Test", function () {
             shotLinkRepository: app(ShotLinkRepositoryInterface::class),
         );
 
-        $response = $useCase->execute(new \Core\Domain\UseCases\DTO\RegisterClickInput(id: $shortLink->id, ip: '0.0.0.0'));
+        $response = $useCase->execute(new RegisterClickInput(
+            id: $shortLink->id,
+            ip: '0.0.0.0',
+            createdAt: new DateTime(),
+        ));
         assertTrue($response->success);
         assertDatabaseCount('clicks', 1);
     });

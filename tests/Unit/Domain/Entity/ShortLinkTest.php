@@ -17,7 +17,7 @@ describe("ShortLinkTest Unit Test", function () {
     });
 
     test("Add click in short link", function(){
-        $click = new Click(ip: '0.0.0.0');
+        $click = new Click(ip: '0.0.0.0', createdAt: new DateTime());
         $entity = new ShortLink(url: 'testing');
         expect($entity->getClicks())->toHaveCount(0);
         assertCount(0, $entity->getClicks());
