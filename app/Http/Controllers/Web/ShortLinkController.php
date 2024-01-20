@@ -13,6 +13,7 @@ use Core\Domain\UseCases\RegisterShortLink;
 use Core\Domain\UseCases\ShowShortLink;
 
 use function redirect;
+use function route;
 
 class ShortLinkController extends Controller
 {
@@ -25,15 +26,14 @@ class ShortLinkController extends Controller
     public function show(ShowShortLink $showShortLink, string $hash, HistoryShortLink $historyShortLink)
     {
         $response = $showShortLink->execute(new ShowShortLinkInput(hash: $hash));
-        $historiesOutput = $historyShortLink->execute(new HistoryShortLinkInput(id: $response->id));
-        $histories = PaginationPresenter::render($historiesOutput);
-        $url = route('a.short-link.show', ['hash' => $hash]);
         return view(
             'short-link.show',
             (array)$response + [
                 'hash' => $hash,
-                'url' => $url,
-                'histories' => $histories
+                'url' => route('a.short-link.show', ['hash' => $hash]),
+                'histories' => PaginationPresenter::render(
+                    $historyShortLink->execute(new HistoryShortLinkInput(id: $response->id))
+                )
             ]
         );
     }
