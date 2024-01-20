@@ -4,6 +4,7 @@ namespace Core\Domain\Repository;
 
 use Core\Domain\Entity\Click;
 use Core\Domain\Entity\ShortLink;
+use Core\Shared\Interfaces\PaginationInterface;
 use DateTime;
 
 interface ShotLinkRepositoryInterface
@@ -17,4 +18,6 @@ interface ShotLinkRepositoryInterface
     public function findShortLinkById(string $id): ShortLink;
 
     public function totalClick(string $idShortLink): int;
+
+    public function paginateHistoriesByShortLink(ShortLink $shortLink): PaginationInterface;
 }

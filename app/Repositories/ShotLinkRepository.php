@@ -2,8 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Repositories\Presenters\PaginationPresenter;
 use Core\Domain\Entity\ShortLink;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
+use Core\Shared\Interfaces\PaginationInterface;
 use DateTime;
 
 class ShotLinkRepository implements ShotLinkRepositoryInterface
@@ -80,5 +82,10 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
     {
         $model = $this->shortLink->find($idShortLink);
         return $model->clicks->count();
+    }
+
+    public function paginateHistoriesByShortLink(ShortLink $shortLink): PaginationInterface
+    {
+        return new PaginationPresenter($this->shortLink->clicks()->paginate());
     }
 }
