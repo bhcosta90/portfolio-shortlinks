@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Models\ShortLink;
+use App\Models\ShortLinkHistory;
 use App\Repositories\Presenters\PaginationPresenter;
 use Core\Domain\Entity\ShortLinkDomain;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
@@ -11,8 +13,8 @@ use DateTime;
 class ShotLinkRepository implements ShotLinkRepositoryInterface
 {
     public function __construct(
-        protected \App\Models\ShortLink $shortLink,
-        protected \App\Models\ShortLinkHistory $click
+        protected ShortLink $shortLink,
+        protected ShortLinkHistory $click
     ) {
         //
     }
