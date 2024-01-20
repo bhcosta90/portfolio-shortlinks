@@ -10,6 +10,6 @@ uses(RefreshDatabase::class);
 describe("ShortLinkController Feature Test", function () {
     test("Action store", function () {
         $shortLink = ShortLink::factory()->create();
-        get('/' . $shortLink->hash)->assertStatus(302);
+        get('/r/' . $shortLink->hash)->assertStatus(302);
     });
 });

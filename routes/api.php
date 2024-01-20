@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{hash}', [ShortLinkController::class, 'show']);
+Route::get('/r/{hash}', [ShortLinkController::class, 'show']);
 Route::post('register', [ShortLinkController::class, 'store']);

@@ -36,6 +36,7 @@ class RegisterClickCommand extends Command
         Amqp::consume('testing', function ($message, $resolver) {
             try {
                 $data = json_decode($message->body, true);
+                Log::info($message->body);
 
                 $useCase = new RegisterClick(
                     shotLinkRepository: app(ShotLinkRepositoryInterface::class),
@@ -54,6 +55,12 @@ class RegisterClickCommand extends Command
             } catch (Exception $exception) {
                 Log::error($exception->getMessage());
             }
-        });
+        }, [
+            'routing' => 'short_link',
+            'exchange' => 'amq.topic',
+            'queue_force_declare' => true,
+            'queue_exclusive' => true,
+            'persistent' => true // required if you want to listen forever
+        ]);
     }
 }

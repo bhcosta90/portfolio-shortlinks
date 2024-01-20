@@ -30,6 +30,18 @@ services:
         networks:
             - kool_local
             - kool_global
+    register-click-command:
+        image: kooldev/php:8.2-swoole
+        command: php artisan app:register-click-command
+        environment:
+            ASUSER: "${KOOL_ASUSER:-0}"
+            UID: "${UID:-0}"
+        volumes:
+            - .:/app:delegated
+        networks:
+            - kool_local
+            - kool_global
+        restart: on-failure
     database:
         image: mysql/mysql-server:8.0
         command: --default-authentication-plugin=mysql_native_password
