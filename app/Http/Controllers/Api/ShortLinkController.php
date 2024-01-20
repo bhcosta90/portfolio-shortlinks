@@ -22,12 +22,17 @@ class ShortLinkController extends Controller
         return new ShortLinkResource($response);
     }
 
-    public function show(string $hash, RedirectShortLinkUseCase $registerClick, Request $request): RedirectResponse
+    public function show(
+        string $hash,
+        RedirectShortLinkUseCase $registerClick,
+        Request $request
+    ): RedirectResponse|array
     {
         $response = $registerClick->execute(new RedirectShortLinkInput(hash: $hash, ip: $request->ip()));
         if (!isset($request->debug)) {
             return redirect($response->url);
         }
-        dd($response);
+
+        return (array)$response;
     }
 }
