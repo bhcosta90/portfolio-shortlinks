@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('clicks', function (Blueprint $table) {
+        Schema::create('short_link_histories', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->foreignUlid('short_link_id')->on('short_links');
             $table->ipAddress();
@@ -23,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('clicks');
+        Schema::dropIfExists('short_link_histories');
     }
 };
