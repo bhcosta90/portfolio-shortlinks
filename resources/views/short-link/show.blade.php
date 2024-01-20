@@ -6,16 +6,16 @@
         <table class="table table-striped table-hover m-0">
             <thead>
             <tr>
-                <th class="w-50">URL</th>
-                <th class="w-25">Endpoint</th>
-                <th class="w-25">Total</th>
+                <th style="width:30%">URL</th>
+                <th style="width:60%">Endpoint</th>
+                <th class="text-end" style="width:10%">Total</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td><a href="{{$url}}" target="_blank">{{$url}}</a></td>
                 <td><a href="{{$endpoint}}" target="_blank">{{$endpoint}}</a></td>
-                <td>{{$total}}</td>
+                <td class="text-end">{{$total}}</td>
             </tr>
             </tbody>
         </table>
