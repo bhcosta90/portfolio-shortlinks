@@ -12,6 +12,7 @@ class ShortLink
 
     public function __construct(
         protected string $url,
+        protected int $total = 0,
         protected ?string $hash = null,
         /**
          * @var Click[]
@@ -25,6 +26,11 @@ class ShortLink
         if (empty($this->hash)) {
             $this->hash = Code::make();
         }
+    }
+
+    public function getTotal(): int
+    {
+        return $this->total;
     }
 
     public function addClick(Click $click): void

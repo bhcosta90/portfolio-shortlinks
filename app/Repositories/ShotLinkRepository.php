@@ -5,7 +5,6 @@ namespace App\Repositories;
 use Core\Domain\Entity\ShortLink;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use DateTime;
-use Illuminate\Support\Facades\DB;
 
 class ShotLinkRepository implements ShotLinkRepositoryInterface
 {
@@ -29,7 +28,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         $model = $this->shortLink->find($shortLink->getId());
 
         $updated = $model->update([
-            'total' => 1
+            'total' => (int) $model->total + 1
         ], [
             'updated_at' => $dateTime
         ]);
@@ -52,7 +51,13 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         $model = $this->shortLink->where('hash', $hash)->first();
 
         if ($model) {
-            return new ShortLink(url: $model->url, hash: $model->hash, id: $model->id, updatedAt: $model->updated_at);
+            return new ShortLink(
+                url: $model->url,
+                total: $model->total,
+                hash: $model->hash,
+                id: $model->id,
+                updatedAt: $model->updated_at
+            );
         }
 
         return null;
@@ -63,6 +68,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         $model = $this->shortLink->findOrFail($id);
         return new ShortLink(
             url: $model->url,
+            total: $model->total,
             hash: $model->hash,
             id: $model->id,
             updatedAt: $model->updated_at
