@@ -5,10 +5,8 @@ namespace Core\Domain\UseCases;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Domain\UseCases\DTO\HistoryShortLinkInput;
 use Core\Domain\UseCases\DTO\HistoryShortLinkOutput;
-use Core\Shared\Interfaces\UseCaseInterface;
-use Core\Shared\Interfaces\UseCaseInterfaceInput;
 
-readonly class HistoryShortLink implements UseCaseInterface
+readonly class HistoryShortLink
 {
     public function __construct(
         protected ShotLinkRepositoryInterface $shortLinkRepository,
@@ -16,7 +14,7 @@ readonly class HistoryShortLink implements UseCaseInterface
         //
     }
 
-    public function execute(UseCaseInterfaceInput $input): HistoryShortLinkOutput{
+    public function execute(HistoryShortLinkInput $input): HistoryShortLinkOutput{
         $shortLink = $this->shortLinkRepository->findShortLinkById($input->id);
         $data = $this->shortLinkRepository->paginateHistoriesByShortLink($shortLink);
         return new HistoryShortLinkOutput(

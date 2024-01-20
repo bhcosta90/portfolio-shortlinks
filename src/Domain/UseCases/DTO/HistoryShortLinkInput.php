@@ -2,9 +2,7 @@
 
 namespace Core\Domain\UseCases\DTO;
 
-use Core\Shared\Interfaces\UseCaseInterfaceInput;
-
-readonly class HistoryShortLinkInput implements UseCaseInterfaceInput
+readonly class HistoryShortLinkInput
 {
     public function __construct(
         public string $id,
