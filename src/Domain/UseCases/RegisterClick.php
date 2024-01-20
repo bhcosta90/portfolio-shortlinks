@@ -20,7 +20,6 @@ readonly class RegisterClick
         $shortLink = $this->shotLinkRepository->findShortLinkById($input->id);
         $click = new Click(ip: $input->ip);
         $shortLink->addClick($click);
-        $this->shotLinkRepository->registerClick($shortLink, $shortLink->getUpdatedAt());
 
         return new RegisterClickOutput(
             success: $this->shotLinkRepository->registerClick(
