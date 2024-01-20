@@ -23,7 +23,7 @@
     </div>
 
     @if(count($histories))
-    <div class="card mt-3">
+    <div class="card mt-2">
         <div class="card-header">Clicks <small class="text-muted">({{$total}})</small></div>
         <table class="table table-striped table-hover m-0">
             <thead>

@@ -7,6 +7,6 @@
     @yield('css')
 </head>
 <body>
-    <div class="container">@yield('body')</div>
+    <div class="container mt-2">@yield('body')</div>
 </body>
 </html>
