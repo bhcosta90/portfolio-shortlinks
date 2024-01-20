@@ -25,6 +25,7 @@ class ShortLinkController extends Controller
     public function show(string $hash, RedirectShortLink $registerClick, Request $request): RedirectResponse
     {
         $response = $registerClick->execute(new RedirectShortLinkInput(hash: $hash, ip: $request->ip()));
+        dd($response->url);
         return redirect($response->url);
     }
 }

@@ -3,17 +3,20 @@
 namespace App\Shared;
 
 use Core\Domain\Cache\ShortLinkCacheInterface;
+use Illuminate\Support\Facades\Cache;
 
 class ShortLinkCache implements ShortLinkCacheInterface
 {
 
+    protected static string $KEY = 'a';
+
     public function set(string $key, $value, int $expiredIn): void
     {
-        \Illuminate\Support\Facades\Cache::set("short_link_" . $key, $value, $expiredIn);
+        Cache::set(self::$KEY . "_short_link_" . $key, $value, $expiredIn);
     }
 
     public function get(string $key)
     {
-        return \Illuminate\Support\Facades\Cache::get("short_link_" . $key);
+        return Cache::get(self::$KEY . "_short_link_" . $key);
     }
 }

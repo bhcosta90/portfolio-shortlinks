@@ -33,12 +33,14 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
             'updated_at' => $dateTime
         ]);
 
-        foreach ($shortLink->getClicks() as $click){
-            $model->clicks()->create([
-                'id' => $click->getId(),
-                'short_link_id' => $shortLink->getId(),
-                'ip_address' => $click->getIp(),
-            ]);
+        if ($updated) {
+            foreach ($shortLink->getClicks() as $click) {
+                $model->clicks()->create([
+                    'id' => $click->getId(),
+                    'short_link_id' => $shortLink->getId(),
+                    'ip_address' => $click->getIp(),
+                ]);
+            }
         }
 
         return $updated;
@@ -49,7 +51,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         $model = $this->shortLink->where('hash', $hash)->first();
 
         if ($model) {
-            return new ShortLink(url: $model->url, hash: $model->hash, updatedAt: $model->updated_at);
+            return new ShortLink(url: $model->url, hash: $model->hash, id: $model->id, updatedAt: $model->updated_at);
         }
 
         return null;
