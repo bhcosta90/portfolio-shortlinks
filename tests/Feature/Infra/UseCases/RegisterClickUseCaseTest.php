@@ -3,7 +3,7 @@
 use App\Models\ShortLink;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Infra\UseCases\DTO\RegisterClick\RegisterClickInput;
-use Core\Infra\UseCases\RegisterClick;
+use Core\Infra\UseCases\RegisterClickUseCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function Pest\Laravel\assertDatabaseCount;
@@ -11,11 +11,11 @@ use function PHPUnit\Framework\assertTrue;
 
 uses(RefreshDatabase::class);
 
-describe("RegisterClick Unit Test", function () {
+describe("RegisterClickUseCase Unit Test", function () {
     test("Execute action", function () {
         $shortLink = ShortLink::factory()->create();
 
-        $useCase = new RegisterClick(
+        $useCase = new RegisterClickUseCase(
             shotLinkRepository: app(ShotLinkRepositoryInterface::class),
         );
 

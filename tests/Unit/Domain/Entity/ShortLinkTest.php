@@ -1,7 +1,7 @@
 <?php
 
-use Core\Domain\Entity\Click;
-use Core\Domain\Entity\ShortLink;
+use Core\Domain\Entity\ClickDomain;
+use Core\Domain\Entity\ShortLinkDomain;
 
 use function PHPUnit\Framework\assertCount;
 use function PHPUnit\Framework\assertNotEmpty;
@@ -9,7 +9,7 @@ use function PHPUnit\Framework\assertEquals;
 
 describe("ShortLinkTest Unit Test", function () {
     test("Create simple short link", function () {
-        $entity = new ShortLink(url: 'testing');
+        $entity = new ShortLinkDomain(url: 'testing');
         assertNotEmpty($entity->getId());
         assertNotEmpty($entity->getHash());
         assertCount(0, $entity->getClicks());
@@ -17,8 +17,8 @@ describe("ShortLinkTest Unit Test", function () {
     });
 
     test("Add click in short link", function(){
-        $click = new Click(ip: '0.0.0.0', createdAt: new DateTime());
-        $entity = new ShortLink(url: 'testing');
+        $click = new ClickDomain(ip: '0.0.0.0', createdAt: new DateTime());
+        $entity = new ShortLinkDomain(url: 'testing');
         expect($entity->getClicks())->toHaveCount(0);
         assertCount(0, $entity->getClicks());
         $entity->addClick($click);

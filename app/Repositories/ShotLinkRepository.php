@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Repositories\Presenters\PaginationPresenter;
-use Core\Domain\Entity\ShortLink;
+use Core\Domain\Entity\ShortLinkDomain;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Shared\Interfaces\PaginationInterface;
 use DateTime;
@@ -15,7 +15,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         //
     }
 
-    public function register(ShortLink $shortLink): bool
+    public function register(ShortLinkDomain $shortLink): bool
     {
         return (bool)$this->shortLink->create([
             'id' => $shortLink->getId(),
@@ -25,7 +25,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         ]);
     }
 
-    public function registerClick(ShortLink $shortLink, DateTime $dateTime): bool
+    public function registerClick(ShortLinkDomain $shortLink, DateTime $dateTime): bool
     {
         $model = $this->shortLink->find($shortLink->getId());
 
@@ -49,12 +49,12 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         return $updated;
     }
 
-    public function findShortLinkByHash(string $hash): ?ShortLink
+    public function findShortLinkByHash(string $hash): ?ShortLinkDomain
     {
         $model = $this->shortLink->where('hash', $hash)->first();
 
         if ($model) {
-            return new ShortLink(
+            return new ShortLinkDomain(
                 url: $model->url,
                 total: $model->total,
                 hash: $model->hash,
@@ -66,10 +66,10 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         return null;
     }
 
-    public function findShortLinkById(string $id): ShortLink
+    public function findShortLinkById(string $id): ShortLinkDomain
     {
         $model = $this->shortLink->findOrFail($id);
-        return new ShortLink(
+        return new ShortLinkDomain(
             url: $model->url,
             total: $model->total,
             hash: $model->hash,
@@ -85,7 +85,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         return $model->clicks->count();
     }
 
-    public function paginateHistoriesByShortLink(int $page, ShortLink $shortLink): PaginationInterface
+    public function paginateHistoriesByShortLink(int $page, ShortLinkDomain $shortLink): PaginationInterface
     {
         $model = $this->shortLink->findOrFail($shortLink->getId());
         return new PaginationPresenter($model->clicks()->orderBy('created_at', 'desc')->paginate(page: $page));

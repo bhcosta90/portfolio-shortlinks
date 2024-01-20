@@ -6,7 +6,7 @@ use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Infra\UseCases\DTO\ShowShortLink\ShowShortLinkInput;
 use Core\Infra\UseCases\DTO\ShowShortLink\ShowShortLinkOutput;
 
-readonly class ShowShortLink
+readonly class ShowShortLinkUseCase
 {
     public function __construct(
         protected ShotLinkRepositoryInterface $shortLinkRepository,

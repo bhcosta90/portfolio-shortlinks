@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Bschmitt\Amqp\Facades\Amqp;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Infra\UseCases\DTO\RegisterClick\RegisterClickInput;
-use Core\Infra\UseCases\RegisterClick;
+use Core\Infra\UseCases\RegisterClickUseCase;
 use DateTime;
 use Exception;
 use Illuminate\Console\Command;
@@ -39,7 +39,7 @@ class RegisterClickCommand extends Command
                 $data = json_decode($message->body, true);
                 Log::info($message->body);
 
-                $useCase = new RegisterClick(
+                $useCase = new RegisterClickUseCase(
                     shotLinkRepository: app(ShotLinkRepositoryInterface::class),
                 );
 

@@ -2,7 +2,7 @@
 
 namespace Core\Infra\UseCases;
 
-use Core\Domain\Entity\ShortLink;
+use Core\Domain\Entity\ShortLinkDomain;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Infra\Cache\ShortLinkCacheInterface;
 use Core\Infra\Exception\ShortLinkNotFoundException;
@@ -11,7 +11,7 @@ use Core\Infra\UseCases\DTO\RedirectShortLink\RedirectShortLinkOutput;
 use Core\Shared\Interfaces\PublishInterface;
 use DateTime;
 
-readonly class RedirectShortLink
+readonly class RedirectShortLinkUseCase
 {
     public function __construct(
         protected ShotLinkRepositoryInterface $shortLinkRepository,
@@ -33,7 +33,7 @@ readonly class RedirectShortLink
             if (empty($entity)) {
                 throw new ShortLinkNotFoundException($input->hash);
             }
-            $this->cache->set($entity->getHash(), $cache = $entity->getDataCache(), ShortLink::$EXPIRED_IN);
+            $this->cache->set($entity->getHash(), $cache = $entity->getDataCache(), ShortLinkDomain::$EXPIRED_IN);
         }
 
         $this->publish->message("short_link", [

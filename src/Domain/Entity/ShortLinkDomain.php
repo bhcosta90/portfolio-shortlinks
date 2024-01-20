@@ -6,7 +6,7 @@ use Core\Shared\Domain\Code;
 use Core\Shared\Domain\Uuid;
 use DateTime;
 
-class ShortLink
+class ShortLinkDomain
 {
     public static int $EXPIRED_IN = 86400; // cache of 1 day
 
@@ -15,7 +15,7 @@ class ShortLink
         protected int $total = 0,
         protected ?string $hash = null,
         /**
-         * @var Click[]
+         * @var ClickDomain[]
          */
         protected array $clicks = [],
         protected ?string $id = null,
@@ -33,7 +33,7 @@ class ShortLink
         return $this->total;
     }
 
-    public function addClick(Click $click): void
+    public function addClick(ClickDomain $click): void
     {
         $this->clicks[] = $click;
     }

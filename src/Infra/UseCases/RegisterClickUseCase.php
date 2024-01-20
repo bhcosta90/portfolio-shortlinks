@@ -2,12 +2,12 @@
 
 namespace Core\Infra\UseCases;
 
-use Core\Domain\Entity\Click;
+use Core\Domain\Entity\ClickDomain;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Infra\UseCases\DTO\RegisterClick\RegisterClickInput;
 use Core\Infra\UseCases\DTO\RegisterClick\RegisterClickOutput;
 
-readonly class RegisterClick
+readonly class RegisterClickUseCase
 {
     public function __construct(
         protected ShotLinkRepositoryInterface $shotLinkRepository,
@@ -18,7 +18,7 @@ readonly class RegisterClick
     public function execute(RegisterClickInput $input): RegisterClickOutput
     {
         $shortLink = $this->shotLinkRepository->findShortLinkById($input->id);
-        $click = new Click(ip: $input->ip, createdAt: $input->createdAt);
+        $click = new ClickDomain(ip: $input->ip, createdAt: $input->createdAt);
         $shortLink->addClick($click);
 
         return new RegisterClickOutput(

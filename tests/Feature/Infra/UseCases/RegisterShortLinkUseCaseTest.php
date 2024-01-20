@@ -3,7 +3,7 @@
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Infra\Cache\ShortLinkCacheInterface;
 use Core\Infra\UseCases\DTO\RegisterShortLink\RegisterShortLinkInput;
-use Core\Infra\UseCases\RegisterShortLink;
+use Core\Infra\UseCases\RegisterShortLinkUseCase;
 use Core\Shared\Interfaces\DatabaseInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -11,9 +11,9 @@ use function Pest\Laravel\assertDatabaseHas;
 
 uses(RefreshDatabase::class);
 
-describe("RegisterShortLink Feature Test", function () {
+describe("RegisterShortLinkUseCase Feature Test", function () {
     test("Execute action", function () {
-        $useCase = new RegisterShortLink(
+        $useCase = new RegisterShortLinkUseCase(
             shotLinkRepository: app(ShotLinkRepositoryInterface::class),
             database: app(DatabaseInterface::class),
             cache: app(ShortLinkCacheInterface::class)

@@ -6,7 +6,7 @@ use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Infra\UseCases\DTO\HistoryShortLink\HistoryShortLinkInput;
 use Core\Infra\UseCases\DTO\HistoryShortLink\HistoryShortLinkOutput;
 
-readonly class HistoryShortLink
+readonly class HistoryShortLinkUseCase
 {
     public function __construct(
         protected ShotLinkRepositoryInterface $shortLinkRepository,

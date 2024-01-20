@@ -3,7 +3,7 @@
 use App\Models\ShortLink;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Infra\UseCases\DTO\HistoryShortLink\HistoryShortLinkInput;
-use Core\Infra\UseCases\HistoryShortLink;
+use Core\Infra\UseCases\HistoryShortLinkUseCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function PHPUnit\Framework\assertCount;
@@ -11,10 +11,10 @@ use function PHPUnit\Framework\assertEquals;
 
 uses(RefreshDatabase::class);
 
-describe("HistoryShortLink Feature Test", function () {
+describe("HistoryShortLinkUseCase Feature Test", function () {
     test("Action execute", function () {
         $shortLink = ShortLink::factory()->hasClicks(50)->create();
-        $useCase = new HistoryShortLink(
+        $useCase = new HistoryShortLinkUseCase(
             shortLinkRepository: app(ShotLinkRepositoryInterface::class)
         );
 
