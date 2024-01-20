@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Repositories\ShotLinkRepository;
+use App\Repositories\Eloquent\ShotLinkRepository;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
