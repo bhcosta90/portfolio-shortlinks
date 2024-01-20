@@ -14,7 +14,7 @@ use DateTime;
 readonly class RedirectShortLink
 {
     public function __construct(
-        protected ShotLinkRepositoryInterface $shotLinkRepository,
+        protected ShotLinkRepositoryInterface $shortLinkRepository,
         protected ShortLinkCacheInterface $cache,
         protected PublishInterface $publish,
     ) {
@@ -29,7 +29,7 @@ readonly class RedirectShortLink
         $cache = $this->cache->get($input->hash);
 
         if (empty($cache)) {
-            $entity = $this->shotLinkRepository->findShortLinkByHash($input->hash);
+            $entity = $this->shortLinkRepository->findShortLinkByHash($input->hash);
             if (empty($entity)) {
                 throw new ShortLinkNotFoundException($input->hash);
             }

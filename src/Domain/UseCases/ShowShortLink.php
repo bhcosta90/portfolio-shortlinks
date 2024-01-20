@@ -9,14 +9,14 @@ use Core\Domain\UseCases\DTO\ShowShortLink\ShowShortLinkOutput;
 readonly class ShowShortLink
 {
     public function __construct(
-        protected ShotLinkRepositoryInterface $shotLinkRepository,
+        protected ShotLinkRepositoryInterface $shortLinkRepository,
     ) {
         //
     }
 
     public function execute(ShowShortLinkInput $input): ShowShortLinkOutput
     {
-        $shortLink = $this->shotLinkRepository->findShortLinkByHash($input->hash);
+        $shortLink = $this->shortLinkRepository->findShortLinkByHash($input->hash);
 
         return new ShowShortLinkOutput(
             id: $shortLink->getId(),

@@ -2,6 +2,7 @@
 
 use App\Models\ShortLink;
 use Core\Domain\Cache\ShortLinkCacheInterface;
+use Core\Domain\Exception\ShortLinkNotFoundException;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Domain\UseCases\DTO\RedirectShortLink\RedirectShortLinkInput;
 use Core\Domain\UseCases\RedirectShortLink;
@@ -15,12 +16,24 @@ describe("RedirectShortLink Feature Test", function () {
         $shortLink = ShortLink::factory()->create();
 
         $useCase = new RedirectShortLink(
-            shotLinkRepository: app(ShotLinkRepositoryInterface::class),
+            shortLinkRepository: app(ShotLinkRepositoryInterface::class),
             cache: app(ShortLinkCacheInterface::class),
             publish: app(PublishInterface::class),
         );
 
         $response = $useCase->execute(new RedirectShortLinkInput($shortLink->hash, "0.0.0.0"));
         expect($response->url)->toBe($shortLink->url);
+    });
+
+    test("Exception when short link do not exist", function () {
+        $useCase = new RedirectShortLink(
+            shortLinkRepository: app(ShotLinkRepositoryInterface::class),
+            cache: app(ShortLinkCacheInterface::class),
+            publish: app(PublishInterface::class),
+        );
+
+        expect(fn() => $useCase->execute(new RedirectShortLinkInput("testing", "0.0.0.0")))->toThrow(
+            ShortLinkNotFoundException::class
+        );
     });
 });

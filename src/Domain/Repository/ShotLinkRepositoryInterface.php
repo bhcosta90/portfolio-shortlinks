@@ -19,5 +19,5 @@ interface ShotLinkRepositoryInterface
 
     public function totalClick(string $idShortLink): int;
 
-    public function paginateHistoriesByShortLink(ShortLink $shortLink): PaginationInterface;
+    public function paginateHistoriesByShortLink(int $page, ShortLink $shortLink): PaginationInterface;
 }

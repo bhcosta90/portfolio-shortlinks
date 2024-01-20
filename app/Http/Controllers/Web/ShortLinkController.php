@@ -32,7 +32,7 @@ class ShortLinkController extends Controller
                 'hash' => $hash,
                 'url' => route('a.short-link.show', ['hash' => $hash]),
                 'histories' => PaginationPresenter::render(
-                    $historyShortLink->execute(new HistoryShortLinkInput(id: $response->id))
+                    $historyShortLink->execute(new HistoryShortLinkInput(page: request('page', 1), id: $response->id))
                 )
             ]
         );

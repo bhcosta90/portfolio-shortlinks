@@ -85,9 +85,9 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         return $model->clicks->count();
     }
 
-    public function paginateHistoriesByShortLink(ShortLink $shortLink): PaginationInterface
+    public function paginateHistoriesByShortLink(int $page, ShortLink $shortLink): PaginationInterface
     {
         $model = $this->shortLink->findOrFail($shortLink->getId());
-        return new PaginationPresenter($model->clicks()->orderBy('created_at', 'desc')->paginate());
+        return new PaginationPresenter($model->clicks()->orderBy('created_at', 'desc')->paginate(page: $page));
     }
 }

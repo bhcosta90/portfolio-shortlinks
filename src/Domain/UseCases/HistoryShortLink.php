@@ -16,7 +16,7 @@ readonly class HistoryShortLink
 
     public function execute(HistoryShortLinkInput $input): HistoryShortLinkOutput{
         $shortLink = $this->shortLinkRepository->findShortLinkById($input->id);
-        $data = $this->shortLinkRepository->paginateHistoriesByShortLink($shortLink);
+        $data = $this->shortLinkRepository->paginateHistoriesByShortLink($input->page, $shortLink);
         return new HistoryShortLinkOutput(
             items: $data->items(),
             total: $data->total(),
