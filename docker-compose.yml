@@ -3,11 +3,10 @@ version: "3.8"
 # Services definitions
 #
 services:
-    dev:
-        image: kooldev/php:8.2-swoole
-        command: php artisan serve --host=0.0.0.0 --port=80
+    app:
+        image: kooldev/php:8.2-nginx
         ports:
-            - "${KOOL_APP_PORT_DEV:-8000}:80"
+            - "${KOOL_APP_PORT:-80}:80"
         environment:
             ASUSER: "${KOOL_ASUSER:-0}"
             UID: "${UID:-0}"
@@ -17,19 +16,20 @@ services:
             - kool_local
             - kool_global
 
-    app:
-        image: kooldev/php:8.2-swoole
-        command: php artisan octane:start --server=swoole --host=0.0.0.0 --port=80 --watch --poll
-        ports:
-            - "${KOOL_APP_PORT:-8001}:80"
-        environment:
-            ASUSER: "${KOOL_ASUSER:-0}"
-            UID: "${UID:-0}"
-        volumes:
-            - .:/app:delegated
-        networks:
-            - kool_local
-            - kool_global
+#    app:
+#        image: kooldev/php:8.2-swoole
+#        command: php artisan octane:start --server=swoole --host=0.0.0.0 --port=80 --watch --poll
+#        ports:
+#            - "${KOOL_APP_PORT:-8001}:80"
+#        environment:
+#            ASUSER: "${KOOL_ASUSER:-0}"
+#            UID: "${UID:-0}"
+#        volumes:
+#            - .:/app:delegated
+#        networks:
+#            - kool_local
+#            - kool_global
+
     register-click-command:
         image: kooldev/php:8.2-swoole
         command: php artisan app:register-click-command
