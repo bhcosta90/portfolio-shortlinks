@@ -1,6 +1,6 @@
 <?php
 
-use Core\Domain\Entity\ClickDomain;
+use Core\Domain\Entity\ShortLinkHistoryDomain;
 use Core\Domain\Entity\ShortLinkDomain;
 
 use function PHPUnit\Framework\assertCount;
@@ -17,7 +17,7 @@ describe("ShortLinkTest Unit Test", function () {
     });
 
     test("Add click in short link", function () {
-        $click = new ClickDomain(ip: '0.0.0.0', createdAt: new DateTime());
+        $click = new ShortLinkHistoryDomain(ip: '0.0.0.0', createdAt: new DateTime());
         $entity = new ShortLinkDomain(url: 'testing');
         expect($entity->getClicks())->toHaveCount(0);
         assertCount(0, $entity->getClicks());

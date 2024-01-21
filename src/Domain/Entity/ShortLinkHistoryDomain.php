@@ -5,7 +5,7 @@ namespace Core\Domain\Entity;
 use Core\Shared\Domain\Uuid;
 use DateTime;
 
-class ClickDomain
+class ShortLinkHistoryDomain
 {
     public function __construct(
         protected string $ip,

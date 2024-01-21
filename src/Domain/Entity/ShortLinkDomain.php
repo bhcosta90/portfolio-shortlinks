@@ -15,7 +15,7 @@ class ShortLinkDomain
         protected int $total = 0,
         protected ?string $hash = null,
         /**
-         * @var ClickDomain[]
+         * @var ShortLinkHistoryDomain[]
          */
         protected array $clicks = [],
         protected ?string $id = null,
@@ -33,7 +33,7 @@ class ShortLinkDomain
         return $this->total;
     }
 
-    public function addClick(ClickDomain $click): void
+    public function addClick(ShortLinkHistoryDomain $click): void
     {
         $this->clicks[] = $click;
     }
