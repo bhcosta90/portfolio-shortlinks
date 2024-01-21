@@ -17,7 +17,7 @@ class ShortLinkDomain
         /**
          * @var ShortLinkHistoryDomain[]
          */
-        protected array $clicks = [],
+        protected array $histories = [],
         protected ?string $id = null,
         protected ?DateTime $updatedAt = null,
     ) {
@@ -33,9 +33,9 @@ class ShortLinkDomain
         return $this->total;
     }
 
-    public function addClick(ShortLinkHistoryDomain $click): void
+    public function addHistory(ShortLinkHistoryDomain $click): void
     {
-        $this->clicks[] = $click;
+        $this->histories[] = $click;
     }
 
     public function getHash(): ?string
@@ -43,9 +43,9 @@ class ShortLinkDomain
         return $this->hash;
     }
 
-    public function getClicks(): array
+    public function getHistories(): array
     {
-        return $this->clicks;
+        return $this->histories;
     }
 
     public function getUpdatedAt(): ?DateTime

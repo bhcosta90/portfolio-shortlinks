@@ -12,16 +12,16 @@ describe("ShortLinkTest Unit Test", function () {
         $entity = new ShortLinkDomain(url: 'testing');
         assertNotEmpty($entity->getId());
         assertNotEmpty($entity->getHash());
-        assertCount(0, $entity->getClicks());
+        assertCount(0, $entity->getHistories());
         assertEquals(8, strlen($entity->getHash()));
     });
 
     test("Add click in short link", function () {
         $click = new ShortLinkHistoryDomain(ip: '0.0.0.0', createdAt: new DateTime());
         $entity = new ShortLinkDomain(url: 'testing');
-        expect($entity->getClicks())->toHaveCount(0);
-        assertCount(0, $entity->getClicks());
-        $entity->addClick($click);
-        assertCount(1, $entity->getClicks());
+        expect($entity->getHistories())->toHaveCount(0);
+        assertCount(0, $entity->getHistories());
+        $entity->addHistory($click);
+        assertCount(1, $entity->getHistories());
     });
 });

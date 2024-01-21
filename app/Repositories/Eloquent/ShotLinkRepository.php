@@ -25,7 +25,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
             'id' => $shortLink->getId(),
             'hash' => $shortLink->getHash(),
             'url' => $shortLink->getUrl(),
-            'total' => count($shortLink->getClicks()),
+            'total' => count($shortLink->getHistories()),
         ]);
     }
 
@@ -40,7 +40,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         ]);
 
         if ($updated) {
-            foreach ($shortLink->getClicks() as $click) {
+            foreach ($shortLink->getHistories() as $click) {
                 $model->shortLinkHistories()->create([
                     'id' => $click->getId(),
                     'short_link_id' => $shortLink->getId(),

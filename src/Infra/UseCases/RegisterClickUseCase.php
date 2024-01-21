@@ -19,7 +19,7 @@ readonly class RegisterClickUseCase
     {
         $shortLink = $this->shotLinkRepository->findShortLinkById($input->id);
         $click = new ShortLinkHistoryDomain(ip: $input->ip, createdAt: $input->createdAt);
-        $shortLink->addClick($click);
+        $shortLink->addHistory($click);
 
         return new RegisterClickOutput(
             success: $this->shotLinkRepository->registerClick(
