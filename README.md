@@ -14,6 +14,10 @@ kool self-update
 <h2>🛠️ Installation Steps:</h2>
 
 ```
+cp .env.example .env
+```
+
+```
 kool run setup
 ```
 
