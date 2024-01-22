@@ -1,6 +1,6 @@
 <h1 align="center" id="title">Shortlink</h1>
 
-<p id="description">URL shortener project</p>
+<p id="description">URL shortener project.</p>
 
 <h2>🛠️ Installation Steps:</h2>
 
