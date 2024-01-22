@@ -5,11 +5,11 @@
 <h2>🛠️ Kool Plugin Steps:</h2>
 
 ```
-curl -fsSL https://kool.dev/install | bash
+$ curl -fsSL https://kool.dev/install | bash
 ```
 
 ```
-kool self-update
+$ kool self-update
 ```
 
 <h2>🛠️ Installation Steps:</h2>
@@ -19,11 +19,11 @@ cp .env.example .env
 ```
 
 ```
-kool run setup
+$ kool run setup
 ```
 
 ```
-kool start
+$ kool start
 ```
 
 <h2>💻 Built with</h2>
