@@ -13,7 +13,6 @@ scripts:
   reset:
     - kool run composer install
     - kool run artisan migrate:fresh --seed
-    - kool run npm install
   before-start:
     - kool docker kooldev/bash -c "cp .env.example .env"
     - kool docker kooldev/php:8.2-nginx composer install
