@@ -16,11 +16,7 @@ scripts:
     - kool run npm install
   before-start:
     - kool docker kooldev/bash -c "cp .env.example .env"
-    - kool docker kooldev/php:8.2-swoole composer install
-    - kool docker kooldev/php:8.2-swoole php artisan key:generate
-    - kool run npm install
-  # npm - helpers for JS handling
-  npm: kool docker kooldev/node:20 npm
-  npx: kool docker kooldev/node:20 npx
+    - kool docker kooldev/php:8.2-nginx composer install
+    - kool docker kooldev/php:8.2-nginx php artisan key:generate
   # CLI access to MySQL
   mysql: kool exec -e MYSQL_PWD=$DB_PASSWORD database mysql -u $DB_USERNAME $DB_DATABASE

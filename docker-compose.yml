@@ -17,7 +17,7 @@ services:
             - kool_global
 
 #    app:
-#        image: kooldev/php:8.2-swoole
+#        image: kooldev/php:8.2-nginx
 #        command: php artisan octane:start --server=swoole --host=0.0.0.0 --port=80 --watch --poll
 #        ports:
 #            - "${KOOL_APP_PORT:-8001}:80"
@@ -31,7 +31,7 @@ services:
 #            - kool_global
 
     horizon:
-        image: kooldev/php:8.2-swoole
+        image: kooldev/php:8.2-nginx
         command: php artisan horizon
         environment:
             ASUSER: "${KOOL_ASUSER:-0}"
@@ -44,7 +44,7 @@ services:
         restart: on-failure
 
     register-click-command:
-        image: kooldev/php:8.2-swoole
+        image: kooldev/php:8.2-nginx
         command: php artisan app:register-click-command
         environment:
             ASUSER: "${KOOL_ASUSER:-0}"
