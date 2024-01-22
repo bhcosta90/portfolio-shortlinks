@@ -12,7 +12,7 @@ interface ShotLinkRepositoryInterface
 
     public function registerClick(ShortLinkDomain $shortLink, DateTime $dateTime): bool;
 
-    public function findShortLinkByHash(string $hash): ?ShortLinkDomain;
+    public function findShortLinkByHash(string $hash, ?DateTime $dateExpiredAt): ?ShortLinkDomain;
 
     public function findShortLinkById(string $id): ShortLinkDomain;
 

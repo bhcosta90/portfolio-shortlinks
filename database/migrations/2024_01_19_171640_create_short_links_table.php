@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('url');
             $table->string('hash', 50);
             $table->unsignedInteger('total');
+            $table->dateTime('expired_at');
             $table->timestamps();
         });
     }

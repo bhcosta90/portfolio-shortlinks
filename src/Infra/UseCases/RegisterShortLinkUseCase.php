@@ -8,6 +8,7 @@ use Core\Infra\Cache\ShortLinkCacheInterface;
 use Core\Infra\UseCases\DTO\RegisterShortLink\RegisterShortLinkInput;
 use Core\Infra\UseCases\DTO\RegisterShortLink\RegisterShortLinkOutput;
 use Core\Shared\Interfaces\DatabaseInterface;
+use DateTime;
 
 readonly class RegisterShortLinkUseCase
 {
@@ -21,7 +22,7 @@ readonly class RegisterShortLinkUseCase
 
     public function execute(RegisterShortLinkInput $input): RegisterShortLinkOutput
     {
-        $entity = new ShortLinkDomain(url: $input->url);
+        $entity = new ShortLinkDomain(url: $input->url, dateExpired: new DateTime());
 
         $this->database->execute(function () use ($entity) {
             $this->shotLinkRepository->register($entity);

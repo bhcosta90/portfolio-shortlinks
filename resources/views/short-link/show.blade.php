@@ -13,7 +13,13 @@
             </thead>
             <tbody>
             <tr>
-                <td><a href="{{$url}}" target="_blank">{{$url}}</a></td>
+                <td>
+                    @if($isDateValid)
+                        <a href="{{$url}}" target="_blank">{{$url}}</a>
+                    @else
+                        {{$url}}
+                    @endif
+                </td>
                 <td><a href="{{$endpoint}}" target="_blank">{{$endpoint}}</a></td>
                 <td class="text-end">{{$total}}</td>
             </tr>

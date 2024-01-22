@@ -29,7 +29,7 @@ readonly class RedirectShortLinkUseCase
         $cache = $this->cache->get($input->hash);
 
         if (empty($cache)) {
-            $entity = $this->shortLinkRepository->findShortLinkByHash($input->hash);
+            $entity = $this->shortLinkRepository->findShortLinkByHash($input->hash, new DateTime());
             if (empty($entity)) {
                 throw new ShortLinkNotFoundException($input->hash);
             }

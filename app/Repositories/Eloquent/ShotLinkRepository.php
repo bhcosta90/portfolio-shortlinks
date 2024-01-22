@@ -9,6 +9,7 @@ use Core\Domain\Entity\ShortLinkDomain;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
 use Core\Shared\Interfaces\PaginationInterface;
 use DateTime;
+use Exception;
 
 class ShotLinkRepository implements ShotLinkRepositoryInterface
 {
@@ -25,7 +26,8 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
             'id' => $shortLink->getId(),
             'hash' => $shortLink->getHash(),
             'url' => $shortLink->getUrl(),
-            'total' => count($shortLink->getHistories()),
+            'total' => 0,
+            'expired_at' => $shortLink->calculateDateExpired(),
         ]);
     }
 
@@ -53,18 +55,18 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         return $updated;
     }
 
-    public function findShortLinkByHash(string $hash): ?ShortLinkDomain
+    public function findShortLinkByHash(string $hash, ?DateTime $dateExpiredAt): ?ShortLinkDomain
     {
-        $model = $this->shortLink->where('hash', $hash)->first();
+        $result = $this->shortLink->where('hash', $hash);
+
+        if ($dateExpiredAt) {
+            $result->where('expired_at', '>=', $dateExpiredAt);
+        }
+
+        $model = $result->first();
 
         if ($model) {
-            return new ShortLinkDomain(
-                url: $model->url,
-                total: $model->total,
-                hash: $model->hash,
-                id: $model->id,
-                updatedAt: $model->updated_at
-            );
+            return $this->toEntity($model);
         }
 
         return null;
@@ -73,13 +75,7 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
     public function findShortLinkById(string $id): ShortLinkDomain
     {
         $model = $this->shortLink->findOrFail($id);
-        return new ShortLinkDomain(
-            url: $model->url,
-            total: $model->total,
-            hash: $model->hash,
-            id: $model->id,
-            updatedAt: $model->updated_at
-        );
+        return $this->toEntity($model);
     }
 
     public function paginateHistoriesByShortLink(int $page, ShortLinkDomain $shortLink): PaginationInterface
@@ -87,6 +83,20 @@ class ShotLinkRepository implements ShotLinkRepositoryInterface
         $model = $this->shortLink->findOrFail($shortLink->getId());
         return new PaginationPresenter(
             $model->shortLinkHistories()->orderBy('created_at', 'desc')->paginate(page: $page)
+        );
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function toEntity(object $data): ShortLinkDomain{
+        return new ShortLinkDomain(
+            url: $data->url,
+            dateExpired: new DateTime($data->expired_at),
+            total: $data->total,
+            hash: $data->hash,
+            id: $data->id,
+            updatedAt: $data->updated_at
         );
     }
 }

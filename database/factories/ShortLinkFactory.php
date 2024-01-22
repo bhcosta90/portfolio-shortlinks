@@ -23,6 +23,7 @@ class ShortLinkFactory extends Factory
             'url' => $this->faker->url(),
             'hash' => Str::random(50),
             'total' => 0,
+            'expired_at' => now()->addSeconds(60)
         ];
     }
 }

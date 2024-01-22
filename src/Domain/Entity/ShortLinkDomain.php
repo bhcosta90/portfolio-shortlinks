@@ -12,6 +12,7 @@ class ShortLinkDomain
 
     public function __construct(
         protected string $url,
+        protected DateTime $dateExpired,
         protected int $total = 0,
         protected ?string $hash = null,
         /**
@@ -69,5 +70,16 @@ class ShortLinkDomain
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function calculateDateExpired(): DateTime
+    {
+        $this->dateExpired->modify(self::$EXPIRED_IN . " seconds");
+        return $this->dateExpired;
+    }
+
+    public function isDateExpiredAt(): bool
+    {
+        return (new DateTime())->format('Y-m-d H:i:s') >= $this->dateExpired->format('Y-m-d H:i:s');
     }
 }

@@ -36,4 +36,20 @@ describe("RedirectShortLinkUseCase Feature Test", function () {
             ShortLinkNotFoundException::class
         );
     });
+
+    test("Exception when short link is expired", function () {
+        $shortLink = ShortLink::factory()->create([
+            'expired_at' => now()->subSecond(),
+        ]);
+
+        $useCase = new RedirectShortLinkUseCase(
+            shortLinkRepository: app(ShotLinkRepositoryInterface::class),
+            cache: app(ShortLinkCacheInterface::class),
+            publish: app(PublishInterface::class),
+        );
+
+        expect(fn() => $useCase->execute(new RedirectShortLinkInput($shortLink->hash, "0.0.0.0")))->toThrow(
+            ShortLinkNotFoundException::class
+        );
+    });
 });
