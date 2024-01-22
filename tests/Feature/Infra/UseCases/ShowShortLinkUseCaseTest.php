@@ -2,7 +2,6 @@
 
 use App\Models\ShortLink;
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
-use Core\Infra\Exception\ShortLinkNotFoundException;
 use Core\Infra\UseCases\DTO\ShowShortLink\ShowShortLinkInput;
 use Core\Infra\UseCases\ShowShortLinkUseCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;

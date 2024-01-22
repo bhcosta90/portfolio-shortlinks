@@ -1,7 +1,7 @@
 <?php
 
-use Core\Domain\Entity\ShortLinkHistoryDomain;
 use Core\Domain\Entity\ShortLinkDomain;
+use Core\Domain\Entity\ShortLinkHistoryDomain;
 
 use function PHPUnit\Framework\assertCount;
 use function PHPUnit\Framework\assertEquals;

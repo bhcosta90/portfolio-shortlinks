@@ -3,7 +3,6 @@
 namespace Core\Infra\UseCases;
 
 use Core\Domain\Repository\ShotLinkRepositoryInterface;
-use Core\Infra\Exception\ShortLinkNotFoundException;
 use Core\Infra\UseCases\DTO\ShowShortLink\ShowShortLinkInput;
 use Core\Infra\UseCases\DTO\ShowShortLink\ShowShortLinkOutput;
 
