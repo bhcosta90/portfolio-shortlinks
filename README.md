@@ -5,26 +5,20 @@
 <h2>🛠️ Installation Steps:</h2>
 
 ```
-docker-compose up -d
+curl -fsSL https://kool.dev/install | bash
 ```
 
 ```
-docker-compose run --rm app composer install
+kool self-update
 ```
 
 ```
-docker-compose run --rm app cp .env.example .env
+kool run setup
 ```
 
 ```
-docker-compose run --rm app php artisan key:generate
+kool start
 ```
-
-```
-docker-compose run --rm app php artisan migrate
-```
-
-
 
 <h2>💻 Built with</h2>
 
