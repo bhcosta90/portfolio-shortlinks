@@ -32,6 +32,7 @@ Technologies used in the project:
 
 *   PHP
 *   Laravel
+*   Horizon
 *   RabbitMQ
 *   MySql
 *   Redis

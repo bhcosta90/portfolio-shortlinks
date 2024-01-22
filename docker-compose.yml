@@ -30,6 +30,19 @@ services:
 #            - kool_local
 #            - kool_global
 
+    horizon:
+        image: kooldev/php:8.2-swoole
+        command: php artisan horizon
+        environment:
+            ASUSER: "${KOOL_ASUSER:-0}"
+            UID: "${UID:-0}"
+        volumes:
+            - .:/app:delegated
+        networks:
+            - kool_local
+            - kool_global
+        restart: on-failure
+
     register-click-command:
         image: kooldev/php:8.2-swoole
         command: php artisan app:register-click-command
