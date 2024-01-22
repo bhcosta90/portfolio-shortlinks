@@ -32,6 +32,8 @@ $ kool run reset
 $ kool start
 ```
 
+#### http://localhost:8000
+
 <h2>💻 Built with</h2>
 
 Technologies used in the project:
