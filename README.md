@@ -28,10 +28,6 @@ $ kool run setup
 $ kool run reset
 ```
 
-```
-$ kool start
-```
-
 #### http://localhost:8000
 
 <h2>💻 Built with</h2>
