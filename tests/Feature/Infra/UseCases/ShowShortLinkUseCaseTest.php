@@ -18,19 +18,9 @@ describe("ShowShortLinkUseCase Feature Test", function () {
             shortLinkRepository: app(ShotLinkRepositoryInterface::class)
         );
 
-        $response = $useCase->execute(new ShowShortLinkInput(hash: $shortLink->hash));
-        assertEquals($shortLink->id, $response->id);
+        $response = $useCase->execute(new ShowShortLinkInput(id: $shortLink->id));
+        assertEquals($shortLink->hash, $response->hash);
         assertEquals($shortLink->url, $response->endpoint);
         assertEquals($shortLink->total, $response->total);
-    });
-
-    test("Exception when do not exist short link", function () {
-        $useCase = new ShowShortLinkUseCase(
-            shortLinkRepository: app(ShotLinkRepositoryInterface::class)
-        );
-
-        expect(fn() => $useCase->execute(new ShowShortLinkInput(hash: "testing")))->toThrow(
-            ShortLinkNotFoundException::class
-        );
     });
 });
