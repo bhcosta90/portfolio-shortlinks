@@ -20,19 +20,20 @@ class ShortLinkController extends Controller
     public function store(RegisterRequestStore $registerRequestStore, RegisterShortLinkUseCase $registerShortLink)
     {
         $response = $registerShortLink->execute(new RegisterShortLinkInput(url: $registerRequestStore->endpoint));
-        return redirect()->route('w.short-link.show', ['hash' => $response->hash]);
+        return redirect()->route('w.short-link.show', ['id' => $response->id]);
     }
 
-    public function show(ShowShortLinkUseCase $showShortLink, string $hash, HistoryShortLinkUseCase $historyShortLink)
+    public function show(ShowShortLinkUseCase $showShortLink, string $id, HistoryShortLinkUseCase $historyShortLink)
     {
-        $response = $showShortLink->execute(new ShowShortLinkInput(hash: $hash));
+        $response = $showShortLink->execute(new ShowShortLinkInput(id: $id));
+
         return view(
             'short-link.show',
             (array)$response + [
-                'hash' => $hash,
+                'hash' => $hash = $response->hash,
                 'url' => route('a.short-link.show', ['hash' => $hash]),
                 'histories' => PaginationPresenter::render(
-                    $historyShortLink->execute(new HistoryShortLinkInput(page: request('page', 1), id: $response->id))
+                    $historyShortLink->execute(new HistoryShortLinkInput(page: request('page', 1), id: $id))
                 )
             ]
         );

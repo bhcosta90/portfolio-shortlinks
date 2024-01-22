@@ -15,19 +15,12 @@ readonly class ShowShortLinkUseCase
         //
     }
 
-    /**
-     * @throws ShortLinkNotFoundException
-     */
     public function execute(ShowShortLinkInput $input): ShowShortLinkOutput
     {
-        $shortLink = $this->shortLinkRepository->findShortLinkByHash($input->hash, null);
-
-        if ($shortLink === null) {
-            throw new ShortLinkNotFoundException($input->hash);
-        }
+        $shortLink = $this->shortLinkRepository->findShortLinkById($input->id);
 
         return new ShowShortLinkOutput(
-            id: $shortLink->getId(),
+            hash: $shortLink->getHash(),
             endpoint: $shortLink->getUrl(),
             total: $shortLink->getTotal(),
             isDateValid: $shortLink->isDateExpiredAt(),
