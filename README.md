@@ -2,8 +2,7 @@
 
 <p id="description">URL shortener project</p>
 
-<h2>🛠️ Installation Steps:</h2>
-
+<h2>🛠️ Kool Plugin Steps:</h2>
 ```
 curl -fsSL https://kool.dev/install | bash
 ```
@@ -11,6 +10,8 @@ curl -fsSL https://kool.dev/install | bash
 ```
 kool self-update
 ```
+
+<h2>🛠️ Installation Steps:</h2>
 
 ```
 kool run setup
