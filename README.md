@@ -23,6 +23,10 @@ $ kool run setup
 ```
 
 ```
+$ kool run reset
+```
+
+```
 $ kool start
 ```
 
