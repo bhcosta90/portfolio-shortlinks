@@ -3,6 +3,7 @@
 <p id="description">URL shortener project</p>
 
 <h2>🛠️ Kool Plugin Steps:</h2>
+
 ```
 curl -fsSL https://kool.dev/install | bash
 ```
