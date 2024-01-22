@@ -55,6 +55,7 @@ services:
             - kool_local
             - kool_global
         restart: on-failure
+
     database:
         image: mysql/mysql-server:8.0
         command: --default-authentication-plugin=mysql_native_password
@@ -73,6 +74,7 @@ services:
             - kool_local
         healthcheck:
             test: [ "CMD", "mysqladmin", "ping" ]
+
     cache:
         image: redis:7-alpine
         volumes:
