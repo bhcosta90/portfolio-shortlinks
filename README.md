@@ -35,6 +35,7 @@ $ kool run reset
 Technologies used in the project:
 
 *   PHP
+*   Clean Architecture
 *   Laravel
 *   Horizon
 *   RabbitMQ
