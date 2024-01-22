@@ -22,6 +22,8 @@ cp .env.example .env
 $ kool run setup
 ```
 
+### Wait 30 seconds to up database
+
 ```
 $ kool run reset
 ```
