@@ -18,6 +18,7 @@
         "robinvdvleuten/ulid": "^5.0"
     },
     "require-dev": {
+        "captainhook/captainhook": "^5.20",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
