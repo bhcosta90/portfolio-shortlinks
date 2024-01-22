@@ -80,6 +80,6 @@ class ShortLinkDomain
 
     public function isDateExpiredAt(): bool
     {
-        return (new DateTime())->format('Y-m-d H:i:s') >= $this->dateExpired->format('Y-m-d H:i:s');
+        return (new DateTime())->format('Y-m-d H:i:s') <= $this->dateExpired->format('Y-m-d H:i:s');
     }
 }
