@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'debug' => (bool)env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'America/Sao_Paulo',
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'pt_BR',
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -96,7 +96,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'pt_BR',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -109,7 +109,7 @@ return [
     |
     */
 
-    'faker_locale' => 'pt_BR',
+    'faker_locale' => 'en_US',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,9 +167,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\HorizonServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\RepositoryServiceProvider::class,
     ])->toArray(),
 
     /*
