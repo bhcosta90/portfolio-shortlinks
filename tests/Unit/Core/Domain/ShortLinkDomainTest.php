@@ -53,7 +53,9 @@ describe("ShortLinkDomain Unit Test", function () {
         );
 
         assertCount(0, $domain->clicks);
+        assertEquals(0, $domain->total);
         $domain->addClick($mockClickShortLinkDomain);
         assertCount(1, $domain->clicks);
+        assertEquals(1, $domain->total);
     });
 });

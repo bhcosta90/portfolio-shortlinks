@@ -7,6 +7,9 @@ namespace Core\Domain;
 use Shared\Abstracts\Entity;
 use Shared\ValueObject\Id;
 
+/**
+ * @property string $ip,
+ */
 class ClickShortLinkDomain extends Entity
 {
     public function __construct(
