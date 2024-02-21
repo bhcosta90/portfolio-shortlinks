@@ -7,6 +7,7 @@ use Core\UseCase\DTO\ClickShortLinkOutput;
 use Core\UseCase\RegisterClickShortLink;
 
 use function Pest\Laravel\assertDatabaseHas;
+use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertInstanceOf;
 
 beforeEach(fn () => $this->useCase = app(RegisterClickShortLink::class));
@@ -22,6 +23,12 @@ describe('RegisterClickShortLink Feature Test', function () {
             'short_link_id' => $shortLink->id,
             'ip' => 'testing',
         ]);
+
+        assertEquals([
+            'id' => $response->id,
+            'created_at' => $response->created_at,
+            'ip' => 'testing',
+        ], (array) $response);
     });
 
     test("exception when short link do not exist", function () {

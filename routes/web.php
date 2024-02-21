@@ -1,6 +1,9 @@
 <?php
 
-use App\Livewire\Welcome;
+use App\Livewire\Home;
+use App\Livewire\ShortLink;
+use Core\UseCase\ClickShortLink;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Welcome::class);
+Route::get('/', Home::class);
+Route::get('/{id}', ShortLink::class)->name('short-link.show');
+Route::get('/r/{hash}', function (string $hash, ClickShortLink $clickShortLink, Request $request) {
+    $response = $clickShortLink->execute(
+        hash: $hash,
+        ip: $request->ip()
+    );
+
+    return redirect($response->url);
+})->name('redirect');

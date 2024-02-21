@@ -12,6 +12,7 @@ class ShortLinkOutput
         public string $hash,
         public string $date_expired_at,
         public string $url,
+        public int $total,
         public string $id,
         public string $created_at,
         public bool $cache,
@@ -25,6 +26,7 @@ class ShortLinkOutput
             hash: (string)$shortLinkDomain->hash,
             date_expired_at: $shortLinkDomain->dateExpiredAt->format('Y-m-d H:i:s'),
             url: $shortLinkDomain->url,
+            total: $shortLinkDomain->total,
             id: $shortLinkDomain->id(),
             created_at: $shortLinkDomain->createdAt(),
             cache: $cache

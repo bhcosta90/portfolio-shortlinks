@@ -13,5 +13,7 @@ interface ShortLinkRepositoryInterface
 
     public function getByHash(string $hash): ShortLinkDomain;
 
+    public function getById(string $id): ShortLinkDomain;
+
     public function addClick(string $id, ClickShortLinkDomain $linkDomain): ClickShortLinkDomain;
 }

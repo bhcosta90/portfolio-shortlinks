@@ -21,9 +21,28 @@ describe('ClickShortLink Feature Test', function () {
         $shortLink = ShortLink::factory()->create();
         $response = $this->useCase->execute(hash: $shortLink->hash, ip: 'testing');
         assertInstanceOf(ShortLinkOutput::class, $response);
+        assertEquals([
+            'hash' => $response->hash,
+            'date_expired_at' => $response->date_expired_at,
+            'url' => $response->url,
+            'total' => 1,
+            'id' => $response->id,
+            'created_at' => $response->created_at,
+            'cache' => false,
+        ], (array) $response);
         assertDatabaseHas(\App\Models\ClickShortLink::class, [
             'short_link_id' => $shortLink->id,
             'ip' => 'testing',
+        ]);
+        assertDatabaseHas(ShortLink::class, [
+            'id' => $shortLink->id,
+            'total' => 1,
+        ]);
+
+        $this->useCase->execute(hash: $shortLink->hash, ip: 'testing');
+        assertDatabaseHas(ShortLink::class, [
+            'id' => $shortLink->id,
+            'total' => 2,
         ]);
     });
 

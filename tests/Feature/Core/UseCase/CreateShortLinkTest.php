@@ -18,6 +18,16 @@ test('CreateShortLink Feature Test', function () {
     assertNotEmpty($response->id);
     assertNotEmpty($response->created_at);
 
+    assertEquals([
+        'hash' => $response->hash,
+        'date_expired_at' => $response->date_expired_at,
+        'url' => $response->url,
+        'total' => 0,
+        'id' => $response->id,
+        'created_at' => $response->created_at,
+        'cache' => false,
+    ], (array) $response);
+
     assertDatabaseHas(ShortLink::class, [
         'id' => $response->id,
         'created_at' => $response->created_at,

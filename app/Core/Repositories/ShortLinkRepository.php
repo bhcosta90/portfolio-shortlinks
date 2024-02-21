@@ -48,12 +48,26 @@ class ShortLinkRepository implements ShortLinkRepositoryInterface
         return $this->getDomainByModel($model);
     }
 
+    public function getById(string $id): ShortLinkDomain
+    {
+        $model = $this->shortLink->find($id);
+
+        if (empty($model)) {
+            throw new ModelNotFoundException($id, $this->shortLink::class);
+        }
+
+        return $this->getDomainByModel($model);
+    }
+
     public function addClick(string $id, ClickShortLinkDomain $linkDomain): ClickShortLinkDomain
     {
         $model = $this->shortLink->find($id);
         if (empty($model)) {
             throw new Exception\ModelNotFoundException($id, $this->shortLink::class);
         }
+
+        $model->total++;
+        $model->save();
 
         $modelClick = $model->click()->create([
             'id' => $linkDomain->id(),
