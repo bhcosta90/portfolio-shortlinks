@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Domain;
 
-use Core\ValueObject\Code;
+use Core\Domain\ValueObject\Code;
 use Shared\Abstracts\Entity;
 use Shared\ValueObject\Id;
 

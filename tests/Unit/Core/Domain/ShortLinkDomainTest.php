@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
+use Core\Domain\ValueObject\Code;
 use Core\Domain\ClickShortLinkDomain;
 use Core\Domain\ShortLinkDomain;
-
-use Core\ValueObject\Code;
-
 use Shared\ValueObject\Id;
 
 use function PHPUnit\Framework\assertCount;

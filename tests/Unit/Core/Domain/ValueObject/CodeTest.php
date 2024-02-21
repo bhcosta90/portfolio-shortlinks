@@ -2,7 +2,7 @@
 
 namespace Tests\Core\ValueObject;
 
-use Core\ValueObject\Code;
+use Core\Domain\ValueObject\Code;
 use Shared\Contracts\ValueObjectInterface;
 
 use function PHPUnit\Framework\assertEquals;

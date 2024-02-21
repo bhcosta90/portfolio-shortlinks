@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\ValueObject;
+namespace Core\Domain\ValueObject;
 
 use Shared\Contracts\ValueObjectInterface;
 
