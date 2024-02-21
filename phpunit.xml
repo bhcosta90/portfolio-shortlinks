@@ -15,6 +15,7 @@
     <source>
         <include>
             <directory>app</directory>
+            <directory>src</directory>
         </include>
         <exclude>
             <file>app/Providers/RouteServiceProvider.php</file>
