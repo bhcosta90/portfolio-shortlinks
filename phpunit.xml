@@ -20,6 +20,7 @@
         <exclude>
             <file>app/Providers/RouteServiceProvider.php</file>
             <file>app/Providers/BroadcastServiceProvider.php</file>
+            <file>app/Providers/HorizonServiceProvider.php</file>
             <file>app/Http/Middleware/TrustHosts.php</file>
             <file>app/Http/Middleware/RedirectIfAuthenticated.php</file>
             <file>app/Http/Middleware/Authenticate.php</file>
