@@ -4,8 +4,9 @@ namespace App\Listeners;
 
 use Core\UseCase\RegisterClickShortLink;
 use Core\Domain\Events\ClickEvent;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ClickEventListener
+class ClickEventListener implements ShouldQueue
 {
     /**
      * Create the event listener.

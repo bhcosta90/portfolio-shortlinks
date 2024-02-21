@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Core\UseCase\CreateShortLink;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Mary\Traits\Toast;
 
@@ -10,6 +11,7 @@ class Home extends Component
 {
     use Toast;
 
+    #[Rule(['required', 'url'])]
     public ?string $url = null;
     public ?string $redirect = null;
 
@@ -27,6 +29,7 @@ class Home extends Component
 
     public function submit(): void
     {
+        $this->validate();
         $response = $this->shortLink->execute(url: $this->url);
         $this->redirect(route('short-link.show', $response->id), navigate: true);
     }
