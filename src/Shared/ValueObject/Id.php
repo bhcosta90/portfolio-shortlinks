@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Shared\ValueObject;
 
+use Shared\Contracts\ValueObjectInterface;
 use InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 
-class Id implements Contracts\ValueObjectInterface
+class Id implements ValueObjectInterface
 {
     public function __construct(protected mixed $value)
     {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shared\ValueObject\Contracts;
+namespace Shared\Contracts;
 
 interface ValueObjectInterface
 {
