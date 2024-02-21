@@ -23,14 +23,11 @@ class Code implements ValueObjectInterface
         return (string)$this->value;
     }
 
-    public static function make(...$args): ValueObjectInterface
+    public static function make(...$args): self
     {
         return new self($args);
     }
 
-    /**
-     * @throws RandomException
-     */
     private function generate(int $size = 8): string
     {
         $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

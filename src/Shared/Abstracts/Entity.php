@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace Shared\Abstracts;
 
 use Shared\Contracts\EntityInterface;
+use Shared\Traits\MethodMagicTrait;
 use Shared\ValueObject\Id;
 
 abstract class Entity implements EntityInterface
 {
+    use MethodMagicTrait;
+
     public function __construct()
     {
         if (\property_exists($this, 'id')) {
@@ -20,13 +23,19 @@ abstract class Entity implements EntityInterface
         }
     }
 
-    public function id(): string
+    public function id(): ?string
     {
-        return (string)$this->id;
+        if (\property_exists($this, 'id')) {
+            return (string)$this->id;
+        }
+        return null;
     }
 
-    public function createdAt(): string
+    public function createdAt(): ?string
     {
-        return (string)$this->createdAt->format('Y-m-d H:i:s');
+        if (\property_exists($this, 'createdAt')) {
+            return (string)$this->createdAt->format('Y-m-d H:i:s');
+        }
+        return null;
     }
 }

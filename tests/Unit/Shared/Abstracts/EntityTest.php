@@ -10,7 +10,6 @@ use function PHPUnit\Framework\assertNotEmpty;
 
 class StubEntity extends Entity
 {
-
 }
 
 class StubWithEntity extends Entity
@@ -29,7 +28,7 @@ describe('Entity Unit Test', function () {
         assertInstanceOf(EntityInterface::class, $stub);
     });
 
-    test("checking if the id and creation date are assigned", function(){
+    test("checking if the id and creation date are assigned", function () {
         $stub = new StubWithEntity();
         assertNotEmpty($stub->id());
         assertNotEmpty($stub->createdAt());

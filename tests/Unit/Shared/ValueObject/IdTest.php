@@ -27,7 +27,7 @@ describe("Uuid Unit Test", function () {
     });
 
     test("exception id", function () {
-        expect(fn() => new Id(value: '123'))
+        expect(fn () => new Id(value: '123'))
             ->toThrow(InvalidArgumentException::class)
             ->toThrow(sprintf('<%s> does not allow the value <%s>', Id::class, '123'));
     });

@@ -12,9 +12,14 @@ class ShortLinkDomain extends Entity
 {
     public static int $EXPIRED_IN = 86400; // cache of 1 day
 
+    /**
+     * @var ClickShortLinkDomain[]
+     */
+    protected array $clicks = [];
+
     public function __construct(
         protected string $url,
-        protected ?\DateTime $dateExpired = null,
+        protected ?\DateTime $dateExpiredAt = null,
         protected int $total = 0,
         protected ?Code $hash = null,
         protected ?Id $id = null,
@@ -23,6 +28,11 @@ class ShortLinkDomain extends Entity
         parent::__construct();
 
         $this->hash = $this->hash ?: Code::make();
-        $this->dateExpired = $this->dateExpired ?: (new \DateTime())->modify(self::$EXPIRED_IN . " seconds");
+        $this->dateExpiredAt = $this->dateExpiredAt ?: (new \DateTime())->modify(self::$EXPIRED_IN . " seconds");
+    }
+
+    public function addClick(ClickShortLinkDomain $clickShortLinkDomain): void
+    {
+        $this->clicks[] = $clickShortLinkDomain;
     }
 }

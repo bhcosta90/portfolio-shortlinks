@@ -36,7 +36,7 @@ describe("MethodMagicTrait Unit Test", function () {
 
     test("testing a property that does not exist", function () {
         $entity = new StubMethodMagicTrait();
-        expect(fn() => $entity->email)->toThrow(
+        expect(fn () => $entity->email)->toThrow(
             new PropertyException("Property email not found in class " . StubMethodMagicTrait::class)
         );
     });
