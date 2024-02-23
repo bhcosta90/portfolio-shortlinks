@@ -28,10 +28,4 @@ class ShortLink extends Component
     {
         return view('livewire.short-link');
     }
-
-    protected $listeners = ['echo:event-click,UpdateClickShortLinkEvent' => 'notifyNewOrder'];
-
-    public function notifyNewOrder(): void{
-        dump('oi');
-    }
 }

@@ -11,7 +11,6 @@
         "laravel/horizon": "^5.23",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.4",
-        "pusher/pusher-php-server": "^7.2",
         "robsontenorio/mary": "^1.21"
     },
     "require-dev": {
