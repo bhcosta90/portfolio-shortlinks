@@ -16,36 +16,9 @@ services:
             - kool_local
             - kool_global
 
-#    app:
-#        image: kooldev/php:8.2-nginx
-#        command: php artisan octane:start --server=swoole --host=0.0.0.0 --port=80 --watch --poll
-#        ports:
-#            - "${KOOL_APP_PORT:-8001}:80"
-#        environment:
-#            ASUSER: "${KOOL_ASUSER:-0}"
-#            UID: "${UID:-0}"
-#        volumes:
-#            - .:/app:delegated
-#        networks:
-#            - kool_local
-#            - kool_global
-
     horizon:
         image: kooldev/php:8.2-nginx
         command: php artisan horizon
-        environment:
-            ASUSER: "${KOOL_ASUSER:-0}"
-            UID: "${UID:-0}"
-        volumes:
-            - .:/app:delegated
-        networks:
-            - kool_local
-            - kool_global
-        restart: on-failure
-
-    register-click-command:
-        image: kooldev/php:8.2-nginx
-        command: php artisan app:register-click-command
         environment:
             ASUSER: "${KOOL_ASUSER:-0}"
             UID: "${UID:-0}"
@@ -84,27 +57,19 @@ services:
         healthcheck:
             test: [ "CMD", "redis-cli", "ping" ]
 
-    memcached:
-        image: memcached:1.6-alpine
-        volumes:
-            - memcached:/data:delegated
-        networks:
-            - kool_local
-
-    rabbitmq:
-        image: "rabbitmq:3-management"
-        ports:
-            - "5672:5672"  # Porta padrão para conexões AMQP
-            - "15672:15672" # Porta para o painel de controle da RabbitMQ (opcional, acesso via http://localhost:15672)
+    soketi:
+        image: 'quay.io/soketi/soketi:latest-16-alpine'
         environment:
-            #RABBITMQ_ERLANG_COOKIE: "cookie-secreto-aqui" # Substitua por um valor seguro para o Erlang cookie
-            RABBITMQ_DEFAULT_USER: "admin"
-            RABBITMQ_DEFAULT_PASS: "admin"
-        volumes:
-            - rabbitmq:/var/lib/rabbitmq
+            SOKETI_DEBUG: '${SOKETI_DEBUG:-1}'
+            SOKETI_METRICS_SERVER_PORT: '9601'
+            SOKETI_DEFAULT_APP_ID: '${PUSHER_APP_ID:-ID}'
+            SOKETI_DEFAULT_APP_KEY: '${PUSHER_APP_KEY:-APP_KEY}'
+            SOKETI_DEFAULT_APP_SECRET: '${PUSHER_APP_SECRET:-APP_SECRET}'
+        ports:
+            - '${PUSHER_PORT:-6001}:6001'
+            - '${PUSHER_METRICS_PORT:-9601}:9601'
         networks:
             - kool_local
-            - kool_global
 #
 # Networks definitions
 #

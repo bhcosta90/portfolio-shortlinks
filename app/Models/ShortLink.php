@@ -2,19 +2,32 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ShortLink extends Model
 {
-    use HasFactory, HasUlids;
+    use HasFactory;
+    use HasUuids;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'id',
+        'url',
+        'hash',
+        'date_expired_at',
+        'total',
+        'created_at',
+    ];
 
-    public function shortLinkHistories(): HasMany
+    protected $casts = [
+        'date_expired_at' => 'datetime',
+        'total' => 'integer',
+    ];
+
+    public function click(): HasMany
     {
-        return $this->hasMany(ShortLinkHistory::class);
+        return $this->hasMany(ClickShortLink::class);
     }
 }

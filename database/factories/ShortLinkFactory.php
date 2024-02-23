@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Ulid\Ulid;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ShortLink>
@@ -19,11 +18,10 @@ class ShortLinkFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => (string)Ulid::generate(),
-            'url' => $this->faker->url(),
-            'hash' => Str::random(50),
+            'url' => 'http://google.com',
+            'hash' => Str::random(18),
             'total' => 0,
-            'expired_at' => now()->addSeconds(60)
+            'date_expired_at' => now()->addMinutes(10)
         ];
     }
 }

@@ -3,7 +3,13 @@
         "enabled": true,
         "actions": [
             {
-                "action": "./vendor/bin/pest"
+                "action": "./vendor/bin/phpstan analyse"
+            },
+            {
+                "action": "./vendor/bin/pint --test"
+            },
+            {
+                "action": "./vendor/bin/pest --parallel --processes=10 --coverage --min=80"
             }
         ]
     }

@@ -12,6 +12,7 @@ scripts:
     - kool start
   reset:
     - kool run composer install
+    - kool run npm run build
     - kool run artisan migrate:fresh --seed
   before-start:
     - kool docker kooldev/bash -c "cp .env.example .env"
