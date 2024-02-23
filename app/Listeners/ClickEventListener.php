@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\UpdateClickShortLinkEvent;
 use Core\UseCase\RegisterClickShortLink;
 use Core\Domain\Events\ClickEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -24,5 +25,6 @@ class ClickEventListener implements ShouldQueue
         $clicks = $event->payload()['short-link']->clicks;
         $click = end($clicks);
         $this->registerClickShortLink->execute(id: $event->payload()['short-link']->id(), shortLinkDomain: $click);
+        event(new UpdateClickShortLinkEvent());
     }
 }
